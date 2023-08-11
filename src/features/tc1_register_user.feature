@@ -1,9 +1,9 @@
 Feature: User register procedure
 
-  Scenario: Successful user registration
+  Scenario Outline: Successful user registration
     Given Launch browser
     And Navigate to url http://automationexercise.com
-#    When Verify that home page is visible successfully
+    When Verify that home page is visible successfully
 #    And Click on 'Signup / Login' button
 #    And Verify 'New User Signup!' is visible
 #    And Enter name and email address
@@ -17,3 +17,5 @@ Feature: User register procedure
 #    Then Verify that 'ACCOUNT CREATED!' is visible
 #    And Click 'Continue' button
 #    And Verify that 'Logged in as username' is visible
+#    Examples:
+#      |  |
