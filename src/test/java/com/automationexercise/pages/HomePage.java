@@ -10,6 +10,8 @@ public class HomePage {
 
     @FindBy(css = "div.carousel-inner")
     private WebElement mainPageSlider;
+    @FindBy(css = "i.fa.fa-lock")
+    private WebElement signupButton;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -17,6 +19,10 @@ public class HomePage {
 
     public boolean checkVisibility() {
         return mainPageSlider.isDisplayed();
+    }
+
+    public void clickSignup() {
+        signupButton.click();
     }
 
 

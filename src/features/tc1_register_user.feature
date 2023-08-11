@@ -4,7 +4,7 @@ Feature: User register procedure
     Given Launch browser
     And Navigate to url http://automationexercise.com
     When Verify that home page is visible successfully
-#    And Click on 'Signup / Login' button
+    And Click on Signup | Login button
 #    And Verify 'New User Signup!' is visible
 #    And Enter name and email address
 #    And Click 'Signup' button
@@ -19,3 +19,4 @@ Feature: User register procedure
 #    And Verify that 'Logged in as username' is visible
 #    Examples:
 #      |  |
+#      |

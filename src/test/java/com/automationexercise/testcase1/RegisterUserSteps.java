@@ -36,6 +36,10 @@ public class RegisterUserSteps {
 
     }
 
+    @And("Click on Signup | Login button")
+    public void clickOnSignupLoginButton() {
+        homePage.clickSignup();
+    }
 
 }
 
