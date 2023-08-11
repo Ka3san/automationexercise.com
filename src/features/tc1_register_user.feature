@@ -6,7 +6,7 @@ Feature: User register procedure
     When Verify that home page is visible successfully
     And Click on Signup | Login button
     And Verify 'New User Signup!' is visible
-#    And Enter name and email address
+    And Enter '<name>' and '<email address>'
 #    And Click 'Signup' button
 #    And Verify that 'ENTER ACCOUNT INFORMATION' is visible
 #    And Fill details: Title, Name, Email, Password, Date of birth
@@ -17,6 +17,7 @@ Feature: User register procedure
 #    Then Verify that 'ACCOUNT CREATED!' is visible
 #    And Click 'Continue' button
 #    And Verify that 'Logged in as username' is visible
-#    Examples:
-#      |  |
-#      |
+
+    Examples:
+      | name   | email address    |
+      | Stefan | stefan@gmail.com |
