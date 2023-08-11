@@ -59,7 +59,11 @@ public class RegisterUserSteps {
     @And("Enter {string} and {string}")
     public void enterNameAndEmail(String name, String email) {
         loginPage.fillNameAndEmail(userData.setName(name).setEmail(email));
+    }
 
+    @And("Click 'Signup' button")
+    public void clickSignupButton() {
+        loginPage.clickSignupButton();
     }
 
 

@@ -12,6 +12,8 @@ public class LoginPage {
     private WebElement nameInputBox;
     @FindBy(css = "#form > div > div > div:nth-child(3) > div > form > input[type=email]:nth-child(3)")
     private WebElement emailInputBox;
+    @FindBy(xpath = "//*[@id=\"form\"]/div/div/div[3]/div/form/button")
+    private WebElement signupButton;
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -20,5 +22,9 @@ public class LoginPage {
     public void fillNameAndEmail(UserData userData) {
         nameInputBox.sendKeys(userData.getName());
         emailInputBox.sendKeys(userData.getEmail());
+    }
+
+    public void clickSignupButton() {
+        signupButton.click();
     }
 }
