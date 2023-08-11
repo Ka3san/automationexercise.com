@@ -5,7 +5,7 @@ Feature: User register procedure
     And Navigate to url http://automationexercise.com
     When Verify that home page is visible successfully
     And Click on Signup | Login button
-#    And Verify 'New User Signup!' is visible
+    And Verify 'New User Signup!' is visible
 #    And Enter name and email address
 #    And Click 'Signup' button
 #    And Verify that 'ENTER ACCOUNT INFORMATION' is visible

@@ -4,11 +4,14 @@ import com.automationexercise.pages.HomePage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 
@@ -39,6 +42,14 @@ public class RegisterUserSteps {
     @And("Click on Signup | Login button")
     public void clickOnSignupLoginButton() {
         homePage.clickSignup();
+    }
+
+    @And("Verify 'New User Signup!' is visible")
+    public void newUserSignupVisibility() {
+        WebElement signUpFormText = driver.findElement(By.cssSelector("#form > div > div > div:nth-child(3) > div > h2"));
+        String textVisible = signUpFormText.getText();
+        assertEquals("New User Signup!", textVisible);
+
     }
 
 }
