@@ -78,7 +78,7 @@ public class RegisterUserSteps {
 
     @And("Fill details: {string}, {string}, {string}, {string}, {string}")
     public void fillLoginForm(String title, String name, String email, String password, String dateOfBirth) {
-        signupPage.fillDate(userData.setDateOfBirth(dateOfBirth));
+        signupPage.fillForm(userData.setTitle(title).setName(name).setEmail(email).setPassword(password).setDateOfBirth(dateOfBirth));
     }
 
 

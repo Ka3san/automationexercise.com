@@ -24,6 +24,4 @@ public class HomePage {
     public void clickSignup() {
         signupButton.click();
     }
-
-
 }

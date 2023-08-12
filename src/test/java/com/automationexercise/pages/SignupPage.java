@@ -8,37 +8,46 @@ import org.openqa.selenium.support.PageFactory;
 
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.Objects;
 
 
 public class SignupPage {
 
     @FindBy(id = "id_gender1")
-    private WebElement titleCheckBox;
+    private WebElement titleMrCheckBox;
+    @FindBy(id = "id_gender2")
+    private WebElement titleMrsCheckBox;
     @FindBy(id = "password")
     private WebElement passwordInputBox;
     @FindBy(id = "days")
-    private WebElement dayOfBirth;
+    private WebElement dayOfBirthComboBox;
     @FindBy(id = "months")
-    private WebElement monthOfBirth;
+    private WebElement monthOfBirthComboBox;
     @FindBy(id = "years")
-    private WebElement yearOfBirth;
+    private WebElement yearOfBirthComboBox;
 
     public SignupPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
 
     }
-    public void fillDate(UserData userData) {
-        String dateOfBirth = userData.getDateOfBirth();
 
-        LocalDate birthDate = LocalDate.parse(dateOfBirth);
-        int day = birthDate.getDayOfMonth();
-        Month month = birthDate.getMonth();
-        int year = birthDate.getYear();
+    public void fillForm(UserData userData) {
 
-        dayOfBirth.sendKeys(String.valueOf(day));
-        monthOfBirth.sendKeys(String.valueOf(month));
-        yearOfBirth.sendKeys(String.valueOf(year));
+        if (Objects.equals(userData.getTitle(), "Mr.")) {
+            titleMrCheckBox.click();
+        } else {
+            titleMrsCheckBox.click();
+        }
+
+        passwordInputBox.sendKeys(userData.getPassword());
+
+        LocalDate birthDate = LocalDate.parse(userData.getDateOfBirth());
+        int birthDay = birthDate.getDayOfMonth();
+        Month birthMonth = birthDate.getMonth();
+        int birthYear = birthDate.getYear();
+        dayOfBirthComboBox.sendKeys(String.valueOf(birthDay));
+        monthOfBirthComboBox.sendKeys(String.valueOf(birthMonth));
+        yearOfBirthComboBox.sendKeys(String.valueOf(birthYear));
 
     }
-
 }
