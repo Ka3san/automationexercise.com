@@ -20,4 +20,4 @@ Feature: User register procedure
 
     Examples:
       | name   | email            | title | password | date of birth |
-      | Stefan | stefan@gmail.com | Mr.   | Pass123  | 12-12-2012    |
+      | Stefan | stefan@gmail.com | Mr.   | Pass123  | 2012-12-12    |

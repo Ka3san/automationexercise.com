@@ -3,6 +3,7 @@ package com.automationexercise.testcase1;
 import com.automationexercise.UserData;
 import com.automationexercise.pages.HomePage;
 import com.automationexercise.pages.LoginPage;
+import com.automationexercise.pages.SignupPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
@@ -22,6 +23,7 @@ public class RegisterUserSteps {
     private UserData userData;
     private HomePage homePage;
     private LoginPage loginPage;
+    private SignupPage signupPage;
 
     @Given("Launch browser")
     public void launchChromeBrowser() {
@@ -31,6 +33,7 @@ public class RegisterUserSteps {
         userData = new UserData(driver);
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
+        signupPage = new SignupPage(driver);
 
     }
 
@@ -75,7 +78,7 @@ public class RegisterUserSteps {
 
     @And("Fill details: {string}, {string}, {string}, {string}, {string}")
     public void fillLoginForm(String title, String name, String email, String password, String dateOfBirth) {
-
+        signupPage.fillDate(userData.setDateOfBirth(dateOfBirth));
     }
 
 
