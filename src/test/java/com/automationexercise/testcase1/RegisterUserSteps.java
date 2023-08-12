@@ -73,6 +73,11 @@ public class RegisterUserSteps {
         assertEquals("ENTER ACCOUNT INFORMATION", textVisible);
     }
 
+    @And("Fill details: {string}, {string}, {string}, {string}, {string}")
+    public void fillLoginForm(String title, String name, String email, String password, String dateOfBirth) {
+
+    }
+
 
 }
 
