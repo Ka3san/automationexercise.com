@@ -81,6 +81,16 @@ public class RegisterUserSteps {
         signupPage.fillForm(userData.setTitle(title).setName(name).setEmail(email).setPassword(password).setDateOfBirth(dateOfBirth));
     }
 
+    @And("Select checkbox 'Sign up for our newsletter!'")
+    public void selectNewsletterCheckbox() {
+        signupPage.signUpForNewsletter();
+    }
+
+    @And("Select checkbox 'Receive special offers from our partners!'")
+    public void selectReceiveSpecialOffers() {
+        signupPage.receiveSpecialOffers();
+    }
+
 
 }
 

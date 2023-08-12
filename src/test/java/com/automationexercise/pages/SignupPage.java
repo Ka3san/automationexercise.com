@@ -1,6 +1,7 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.UserData;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,6 +26,10 @@ public class SignupPage {
     private WebElement monthOfBirthComboBox;
     @FindBy(id = "years")
     private WebElement yearOfBirthComboBox;
+    @FindBy(id = "newsletter")
+    private WebElement newsletterCheckbox;
+    @FindBy(id = "optin")
+    private WebElement specialOffersCheckbox;
 
     public SignupPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -38,7 +43,6 @@ public class SignupPage {
         } else {
             titleMrsCheckBox.click();
         }
-
         passwordInputBox.sendKeys(userData.getPassword());
 
         LocalDate birthDate = LocalDate.parse(userData.getDateOfBirth());
@@ -48,6 +52,15 @@ public class SignupPage {
         dayOfBirthComboBox.sendKeys(String.valueOf(birthDay));
         monthOfBirthComboBox.sendKeys(String.valueOf(birthMonth));
         yearOfBirthComboBox.sendKeys(String.valueOf(birthYear));
-
     }
+
+    public void signUpForNewsletter() {
+        newsletterCheckbox.sendKeys(Keys.TAB);
+        newsletterCheckbox.click();
+    }
+
+    public void receiveSpecialOffers() {
+        specialOffersCheckbox.click();
+    }
+
 }
