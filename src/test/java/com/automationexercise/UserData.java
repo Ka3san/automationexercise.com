@@ -1,10 +1,5 @@
 package com.automationexercise;
 
-//    And Enter name and email address
-//#    And Fill details: Title, Name, Email, Password, Date of birth
-//#    And Fill details: First name, Last name, Company, Address, Address2, Country, State, City, Zipcode, Mobile Number
-
-
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 

@@ -66,6 +66,13 @@ public class RegisterUserSteps {
         loginPage.clickSignupButton();
     }
 
+    @And("Verify that 'ENTER ACCOUNT INFORMATION' is visible")
+    public void enterAccountInformationVisibility() {
+        WebElement loginFormText = driver.findElement(By.cssSelector("#form > div > div > div > div.login-form > h2 > b"));
+        String textVisible = loginFormText.getText();
+        assertEquals("ENTER ACCOUNT INFORMATION", textVisible);
+    }
+
 
 }
 
