@@ -1,11 +1,13 @@
 package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
+import com.automationexercise.pages.AccountCreatedPage;
 import com.automationexercise.pages.HomePage;
 import com.automationexercise.pages.LoginPage;
 import com.automationexercise.pages.SignupPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -24,6 +26,7 @@ public class RegisterUserSteps {
     private HomePage homePage;
     private LoginPage loginPage;
     private SignupPage signupPage;
+    private AccountCreatedPage accountCreatedPage;
 
     @Given("Launch browser")
     public void launchChromeBrowser() {
@@ -34,6 +37,7 @@ public class RegisterUserSteps {
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
         signupPage = new SignupPage(driver);
+        accountCreatedPage = new AccountCreatedPage(driver);
 
     }
 
@@ -95,6 +99,24 @@ public class RegisterUserSteps {
     public void fillAddressDetails(String firstName, String lastName, String company, String address, String address2, String country, String state, String city, String zipcode, String mobileNumber) {
         signupPage.fillAddressInformationForm(userData.setFirstName(firstName).setLastName(lastName).setCompany(company).setAddress(address).setAddress2(address2).setCountry(country).setState(state).setCity(city).setZipCode(zipcode).setMobileNumber(mobileNumber));
     }
+
+    @And("Click 'Create Account button'")
+    public void clickCreateAccountButton() {
+        signupPage.clickCreateAccount();
+    }
+
+    @Then("Verify that 'ACCOUNT CREATED!' is visible")
+    public void newAccountCreatedVisibility() {
+        WebElement accountCreatedPageText = driver.findElement(By.cssSelector("#form > div > div > div > h2 > b"));
+        String textVisible = accountCreatedPageText.getText();
+        assertEquals("ACCOUNT CREATED!", textVisible);
+    }
+
+    @And("Click 'Continue' button")
+    public void clickContinueButton() {
+        accountCreatedPage.clickContinue();
+    }
+
 
 }
 

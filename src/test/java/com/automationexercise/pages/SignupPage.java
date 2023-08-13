@@ -50,6 +50,8 @@ public class SignupPage {
     private WebElement zipcodeInputBox;
     @FindBy(id = "mobile_number")
     private WebElement mobileNumberInputBox;
+    @FindBy(css = "button.btn.btn-default")
+    private WebElement createAccountButton;
 
     public SignupPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -94,6 +96,10 @@ public class SignupPage {
         cityInputBox.sendKeys(userData.getCity());
         zipcodeInputBox.sendKeys(userData.getZipCode());
         mobileNumberInputBox.sendKeys(userData.getMobileNumber());
+    }
+
+    public void clickCreateAccount() {
+        createAccountButton.submit();
     }
 
 
