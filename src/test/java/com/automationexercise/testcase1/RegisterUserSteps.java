@@ -117,7 +117,19 @@ public class RegisterUserSteps {
         accountCreatedPage.clickContinue();
     }
 
+    @And("Verify that 'Logged in as username' is visible")
+    public void loggedInAsUsernameVisibility() {
 
+//        driver.switchTo().frame(driver.findElement(By.id("google_esf")));
+//        driver.findElement(By.xpath("//*[@id=\"dismiss-button\"]/div/span")).click();
+//        driver.switchTo().defaultContent();
+
+        driver.get("http://automationexercise.com");
+
+        WebElement loggedAsUserText = driver.findElement(By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(10) > a"));
+        String textVisible = loggedAsUserText.getText();
+        assertEquals("Logged in as " + userData.getName(), textVisible);
+    }
 }
 
 
