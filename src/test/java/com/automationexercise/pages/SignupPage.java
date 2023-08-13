@@ -30,13 +30,33 @@ public class SignupPage {
     private WebElement newsletterCheckbox;
     @FindBy(id = "optin")
     private WebElement specialOffersCheckbox;
+    @FindBy(id = "first_name")
+    private WebElement firstNameInputBox;
+    @FindBy(id = "last_name")
+    private WebElement lastNameInputBox;
+    @FindBy(id = "company")
+    private WebElement companyInputBox;
+    @FindBy(id = "address1")
+    private WebElement addressInputBox;
+    @FindBy(id = "address2")
+    private WebElement address2InputBox;
+    @FindBy(id = "country")
+    private WebElement countryInputBox;
+    @FindBy(id = "state")
+    private WebElement stateInputBox;
+    @FindBy(id = "city")
+    private WebElement cityInputBox;
+    @FindBy(id = "zipcode")
+    private WebElement zipcodeInputBox;
+    @FindBy(id = "mobile_number")
+    private WebElement mobileNumberInputBox;
 
     public SignupPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
 
     }
 
-    public void fillForm(UserData userData) {
+    public void fillLoginForm(UserData userData) {
 
         if (Objects.equals(userData.getTitle(), "Mr.")) {
             titleMrCheckBox.click();
@@ -62,5 +82,19 @@ public class SignupPage {
     public void receiveSpecialOffers() {
         specialOffersCheckbox.click();
     }
+
+    public void fillAddressInformationForm(UserData userData) {
+        firstNameInputBox.sendKeys(userData.getFirstName());
+        lastNameInputBox.sendKeys(userData.getLastName());
+        companyInputBox.sendKeys(userData.getCompany());
+        addressInputBox.sendKeys(userData.getAddress());
+        address2InputBox.sendKeys(userData.getAddress2());
+        countryInputBox.sendKeys(userData.getCountry());
+        stateInputBox.sendKeys(userData.getState());
+        cityInputBox.sendKeys(userData.getCity());
+        zipcodeInputBox.sendKeys(userData.getZipCode());
+        mobileNumberInputBox.sendKeys(userData.getMobileNumber());
+    }
+
 
 }

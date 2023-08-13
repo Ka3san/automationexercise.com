@@ -78,7 +78,7 @@ public class RegisterUserSteps {
 
     @And("Fill details: {string}, {string}, {string}, {string}, {string}")
     public void fillLoginForm(String title, String name, String email, String password, String dateOfBirth) {
-        signupPage.fillForm(userData.setTitle(title).setName(name).setEmail(email).setPassword(password).setDateOfBirth(dateOfBirth));
+        signupPage.fillLoginForm(userData.setTitle(title).setName(name).setEmail(email).setPassword(password).setDateOfBirth(dateOfBirth));
     }
 
     @And("Select checkbox 'Sign up for our newsletter!'")
@@ -91,6 +91,11 @@ public class RegisterUserSteps {
         signupPage.receiveSpecialOffers();
     }
 
+    @And("Fill details: {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}")
+    public void fillAddressDetails(String firstName, String lastName, String company, String address, String address2, String country, String state, String city, String zipcode, String mobileNumber) {
+        signupPage.fillAddressInformationForm(userData.setFirstName(firstName).setLastName(lastName).setCompany(company).setAddress(address).setAddress2(address2).setCountry(country).setState(state).setCity(city).setZipCode(zipcode).setMobileNumber(mobileNumber));
+    }
 
 }
+
 
