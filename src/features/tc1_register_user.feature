@@ -20,4 +20,4 @@ Feature: User register procedure
 
     Examples:
       | name   | email            | title | password | date of birth | first name | last name | company     | address           | address2 | country   | state   | city   | zipcode | mobile number |
-      | Stefan | St4fan@gmail.com | Mr.   | Pass123  | 2012-12-12    | Stefan     | Telefan   | Voodoo Inc. | 197 Sesame Street | Bronx    | Singapore | Montana | Berlin | 00-666  | 265340657     |
+      | Stefan | St5fan@gmail.com | Mr.   | Pass123  | 2012-12-12    | Stefan     | Telefan   | Voodoo Inc. | 197 Sesame Street | Bronx    | Singapore | Montana | Berlin | 00-666  | 265340657     |
