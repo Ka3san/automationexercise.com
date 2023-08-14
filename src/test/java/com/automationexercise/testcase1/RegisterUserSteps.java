@@ -130,6 +130,48 @@ public class RegisterUserSteps {
         String textVisible = loggedAsUserText.getText();
         assertEquals("Logged in as " + userData.getName(), textVisible);
     }
+
+//      TEST CASE 2
+
+    @And("Verify 'Login to your account' is visible")
+    public void LoginToYourAccountVisibility() {
+        WebElement loginFormText = driver.findElement(By.xpath("//*[@id=\"form\"]/div/div/div[1]/div/h2"));
+        String textVisible = loginFormText.getText();
+        assertEquals("Login to your account", textVisible);
+    }
+
+    @And("Enter correct {string} and {string}")
+    public void enterEmailAndPassword(String email, String password) {
+        loginPage.fillEmailAndPassword(userData.setEmail(email).setPassword(password));
+    }
+
+    @And("Click 'login' button")
+    public void clickLoginButton() {
+        loginPage.clickLoginButton();
+    }
+
+    @And("Verify that 'Logged in as {string}' is visible")
+    public void loggedInAsUsernameXVisibility(String name) {
+        WebElement loggedAsUserText = driver.findElement(By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(10) > a"));
+        String textVisible = loggedAsUserText.getText();
+        assertEquals("Logged in as " + userData.setName(name).getName(), textVisible);
+    }
+
+    @Then("Click 'Delete Account' button")
+    public void clickDeleteAccountButton() {
+        homePage.clickDeleteAccount();
+    }
+
+    @And("Verify that 'ACCOUNT DELETED!' is visible")
+    public void accountDeletedVisibility() {
+
+        driver.get("https://automationexercise.com/delete_account");
+
+        WebElement accountDeletedText = driver.findElement(By.cssSelector("#form > div > div > div > h2 > b"));
+        String textVisible = accountDeletedText.getText();
+        assertEquals("ACCOUNT DELETED!", textVisible);
+    }
+
 }
 
 

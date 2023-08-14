@@ -8,11 +8,11 @@ Feature: User login procedure with correct email and password
     And Verify 'Login to your account' is visible
     And Enter correct '<email address>' and '<password>'
     And Click 'login' button
-    And Verify that 'Logged in as username' is visible
+    And Verify that 'Logged in as '<name>'' is visible
     Then Click 'Delete Account' button
     And Verify that 'ACCOUNT DELETED!' is visible
 
 
     Examples:
-      | email address    | password |
-      | St5fan@gmail.com | Pass123  |
+      | email address    | password | name   |
+      | St6fan@gmail.com | Pass123  | Stefan |

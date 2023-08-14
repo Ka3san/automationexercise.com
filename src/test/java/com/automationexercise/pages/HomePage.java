@@ -12,6 +12,8 @@ public class HomePage {
     private WebElement mainPageSlider;
     @FindBy(css = "i.fa.fa-lock")
     private WebElement signupButton;
+    @FindBy(css = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(5) > a")
+    private WebElement deleteAccountButton;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -24,4 +26,9 @@ public class HomePage {
     public void clickSignup() {
         signupButton.click();
     }
+
+    public void clickDeleteAccount() {
+        deleteAccountButton.click();
+    }
 }
+

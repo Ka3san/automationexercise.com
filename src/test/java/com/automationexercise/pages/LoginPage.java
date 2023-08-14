@@ -11,9 +11,15 @@ public class LoginPage {
     @FindBy(name = "name")
     private WebElement nameInputBox;
     @FindBy(css = "#form > div > div > div:nth-child(3) > div > form > input[type=email]:nth-child(3)")
-    private WebElement emailInputBox;
+    private WebElement signupEmailInputBox;
     @FindBy(xpath = "//*[@id=\"form\"]/div/div/div[3]/div/form/button")
     private WebElement signupButton;
+    @FindBy(css = "#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > input[type=email]:nth-child(2)")
+    private WebElement loginEmailInputBox;
+    @FindBy(css = "#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > input[type=password]:nth-child(3)")
+    private WebElement passwordInputBox;
+    @FindBy(xpath = "//*[@id=\"form\"]/div/div/div[1]/div/form/button")
+    private WebElement loginButton;
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -21,10 +27,19 @@ public class LoginPage {
 
     public void fillNameAndEmail(UserData userData) {
         nameInputBox.sendKeys(userData.getName());
-        emailInputBox.sendKeys(userData.getEmail());
+        signupEmailInputBox.sendKeys(userData.getEmail());
     }
 
     public void clickSignupButton() {
         signupButton.click();
+    }
+
+    public void fillEmailAndPassword(UserData userData) {
+        loginEmailInputBox.sendKeys(userData.getEmail());
+        passwordInputBox.sendKeys(userData.getPassword());
+    }
+
+    public void clickLoginButton() {
+        loginButton.click();
     }
 }
