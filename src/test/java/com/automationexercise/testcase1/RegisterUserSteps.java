@@ -13,6 +13,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.JavascriptExecutor;
+
 
 import java.time.Duration;
 
@@ -27,6 +29,7 @@ public class RegisterUserSteps {
     private LoginPage loginPage;
     private SignupPage signupPage;
     private AccountCreatedPage accountCreatedPage;
+
 
     @Given("Launch browser")
     public void launchChromeBrowser() {
@@ -114,19 +117,29 @@ public class RegisterUserSteps {
 
     @And("Click 'Continue' button")
     public void clickContinueButton() {
+
         accountCreatedPage.clickContinue();
     }
 
     @And("Verify that 'Logged in as username' is visible")
     public void loggedInAsUsernameVisibility() {
 
-//        driver.switchTo().frame(driver.findElement(By.id("google_esf")));
-//        driver.findElement(By.xpath("//*[@id=\"dismiss-button\"]/div/span")).click();
+//        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id=\"aswift_1\"]")));
+//        driver.findElement(By.id("dismiss-button"));
 //        driver.switchTo().defaultContent();
 
         driver.get("http://automationexercise.com");
 
-        WebElement loggedAsUserText = driver.findElement(By.cssSelector("#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(10) > a"));
+
+//        if (driver instanceof JavascriptExecutor) {
+//            JavascriptExecutor js = (JavascriptExecutor) driver;
+//        }
+
+//        JavascriptExecutor js = (JavascriptExecutor)driver;
+//        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.remove() })");
+
+
+        WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
         String textVisible = loggedAsUserText.getText();
         assertEquals("Logged in as " + userData.getName(), textVisible);
     }

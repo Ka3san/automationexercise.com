@@ -3,6 +3,8 @@ package com.automationexercise;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.UUID;
+
 public class UserData {
     private String name;
     private String email;
@@ -34,7 +36,8 @@ public class UserData {
     }
 
     public UserData setEmail(String email) {
-        this.email = email;
+//        this.email = email
+        this.email = UUID.randomUUID().toString() + "@gmail.com";
         return this;
     }
 
@@ -158,4 +161,6 @@ public class UserData {
     public UserData(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
+
+
 }
