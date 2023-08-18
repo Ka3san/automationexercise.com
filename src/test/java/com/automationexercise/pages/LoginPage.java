@@ -20,6 +20,8 @@ public class LoginPage {
     private WebElement passwordInputBox;
     @FindBy(xpath = "//*[@id=\"form\"]/div/div/div[1]/div/form/button")
     private WebElement loginButton;
+    @FindBy(css = "div.login-form")
+    private WebElement loginForm;
 
     public LoginPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -41,5 +43,9 @@ public class LoginPage {
 
     public void clickLoginButton() {
         loginButton.click();
+    }
+
+    public boolean checkVisibility() {
+        return loginForm.isDisplayed();
     }
 }

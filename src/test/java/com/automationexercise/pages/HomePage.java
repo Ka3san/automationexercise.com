@@ -14,6 +14,8 @@ public class HomePage {
     private WebElement signupButton;
     @FindBy(css = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(5) > a")
     private WebElement deleteAccountButton;
+    @FindBy(css = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(4) > a")
+    private WebElement logoutButton;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -29,6 +31,10 @@ public class HomePage {
 
     public void clickDeleteAccount() {
         deleteAccountButton.click();
+    }
+
+    public void clickLogout() {
+        logoutButton.click();
     }
 }
 

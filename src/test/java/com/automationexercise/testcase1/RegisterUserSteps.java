@@ -5,6 +5,7 @@ import com.automationexercise.pages.AccountCreatedPage;
 import com.automationexercise.pages.HomePage;
 import com.automationexercise.pages.LoginPage;
 import com.automationexercise.pages.SignupPage;
+import com.google.common.base.Verify;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -185,13 +186,25 @@ public class RegisterUserSteps {
         assertEquals("ACCOUNT DELETED!", textVisible);
     }
 
-    //      TEST CASE 2
+    //      TEST CASE 3
 
     @And("Verify error 'Your email or password is incorrect!' is visible")
     public void yourEmailOrPasswordIsIncorrectErrorVisibility() {
         WebElement loginErrorText = driver.findElement(By.cssSelector("#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > p"));
         String textVisible = loginErrorText.getText();
         assertEquals("Your email or password is incorrect!", textVisible);
+    }
+
+    //      TEST CASE 4
+
+    @Then("Click 'Logout' button")
+    public void clickLogoutButton() {
+        homePage.clickLogout();
+    }
+
+    @And("Verify that user is navigated to login page")
+    public void checkIfNavigatedToLoginPage() {
+        loginPage.checkVisibility();
     }
 
 
