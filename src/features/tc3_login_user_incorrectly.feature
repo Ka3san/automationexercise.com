@@ -12,5 +12,5 @@ Feature: User login procedure with incorrect email and password
     And Verify error 'Your email or password is incorrect!' is visible
 
     Examples:
-      | email address    | password | name   |
-      | St7fan@gmail.com | Pass321  | Stefan |
+      | email address    | password |
+      | St7fan@gmail.com | Pass321  |

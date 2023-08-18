@@ -207,7 +207,17 @@ public class RegisterUserSteps {
         loginPage.checkVisibility();
     }
 
+    //      TEST CASE 5
 
+
+    @And("Verify error 'Email Address already exist!' is visible")
+    public void emailAddressAlreadyExistsErrorVisibility() {
+        WebElement loginErrorText = driver.findElement(By.cssSelector("#form > div > div > div:nth-child(3) > div > form > p"));
+        String textVisible = loginErrorText.getText();
+        assertEquals("Email Address already exist!", textVisible);
+
+
+    }
 }
 
 
