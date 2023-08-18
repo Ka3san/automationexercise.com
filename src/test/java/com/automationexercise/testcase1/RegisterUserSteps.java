@@ -185,6 +185,16 @@ public class RegisterUserSteps {
         assertEquals("ACCOUNT DELETED!", textVisible);
     }
 
+    //      TEST CASE 2
+
+    @And("Verify error 'Your email or password is incorrect!' is visible")
+    public void yourEmailOrPasswordIsIncorrectErrorVisibility() {
+        WebElement loginErrorText = driver.findElement(By.cssSelector("#form > div > div > div.col-sm-4.col-sm-offset-1 > div > form > p"));
+        String textVisible = loginErrorText.getText();
+        assertEquals("Your email or password is incorrect!", textVisible);
+    }
+
+
 }
 
 
