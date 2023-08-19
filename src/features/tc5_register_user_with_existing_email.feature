@@ -1,6 +1,6 @@
-Feature: User register procedure
+Feature: User register with existing email
 
-  Scenario Outline: Successful user registration
+  Scenario Outline: Register User with existing email
     Given Launch browser
     And Navigate to url http://automationexercise.com
     When Verify that home page is visible successfully

@@ -215,9 +215,15 @@ public class RegisterUserSteps {
         WebElement loginErrorText = driver.findElement(By.cssSelector("#form > div > div > div:nth-child(3) > div > form > p"));
         String textVisible = loginErrorText.getText();
         assertEquals("Email Address already exist!", textVisible);
-
-
     }
+
+    //      TEST CASE 5
+
+    @And("Click on 'Contact Us' button")
+    public void clickOnContactUsButton() {
+        homePage.clickContactUs();
+    }
+
 }
 
 

@@ -1,6 +1,6 @@
-Feature: User login procedure with correct email and password
+Feature: User logout procedure
 
-  Scenario Outline: Successful user login
+  Scenario Outline: Successful user logout
     Given Launch browser
     And Navigate to url http://automationexercise.com
     When Verify that home page is visible successfully
