@@ -21,6 +21,12 @@ public class UserData {
     private String city;
     private String zipCode;
     private String mobileNumber;
+    private String subject;
+    private String message;
+
+    public UserData(WebDriver driver) {
+        PageFactory.initElements(driver, this);
+    }
 
     public String getName() {
         return name;
@@ -158,9 +164,21 @@ public class UserData {
         return this;
     }
 
-    public UserData(WebDriver driver) {
-        PageFactory.initElements(driver, this);
+    public String getSubject() {
+        return subject;
     }
 
+    public UserData setSubject(String subject) {
+        this.subject = subject;
+        return this;
+    }
 
+    public String getMessage() {
+        return message;
+    }
+
+    public UserData setMessage(String message) {
+        this.message = message;
+        return this;
+    }
 }

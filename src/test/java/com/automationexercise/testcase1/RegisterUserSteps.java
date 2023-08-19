@@ -1,10 +1,7 @@
 package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
-import com.automationexercise.pages.AccountCreatedPage;
-import com.automationexercise.pages.HomePage;
-import com.automationexercise.pages.LoginPage;
-import com.automationexercise.pages.SignupPage;
+import com.automationexercise.pages.*;
 import com.google.common.base.Verify;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -30,6 +27,7 @@ public class RegisterUserSteps {
     private LoginPage loginPage;
     private SignupPage signupPage;
     private AccountCreatedPage accountCreatedPage;
+    private ContactUsPage contactUsPage;
 
 
     @Given("Launch browser")
@@ -42,6 +40,7 @@ public class RegisterUserSteps {
         loginPage = new LoginPage(driver);
         signupPage = new SignupPage(driver);
         accountCreatedPage = new AccountCreatedPage(driver);
+        contactUsPage = new ContactUsPage(driver);
 
     }
 
@@ -223,6 +222,19 @@ public class RegisterUserSteps {
     public void clickOnContactUsButton() {
         homePage.clickContactUs();
     }
+
+    @And("Verify 'GET IN TOUCH' is visible")
+    public void getInTouchVisibility() {
+        WebElement getInTouchText = driver.findElement(By.cssSelector("#contact-page > div.row > div.col-sm-8 > div > h2"));
+        String textVisible = getInTouchText.getText();
+        assertEquals("GET IN TOUCH", textVisible);
+    }
+
+    @And("Enter {string}, {string}, {string} and {string}")
+    public void fillInContactUsForm(String name, String email, String subject, String message) {
+        contactUsPage.fillInContactUsForm(userData.setName(name).setEmail(email).setSubject(subject).setMessage(message));
+    }
+
 
 }
 
