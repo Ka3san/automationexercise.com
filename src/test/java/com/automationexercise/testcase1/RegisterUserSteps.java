@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.JavascriptExecutor;
 
 
+import java.awt.*;
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
@@ -234,6 +235,17 @@ public class RegisterUserSteps {
     public void fillInContactUsForm(String name, String email, String subject, String message) {
         contactUsPage.fillInContactUsForm(userData.setName(name).setEmail(email).setSubject(subject).setMessage(message));
     }
+
+    @And("Upload file")
+    public void fileUpload() throws AWTException {
+        contactUsPage.uploadFile();
+    }
+
+    @And("Click 'Submit' button")
+    public void submit() {
+        contactUsPage.clickSubmit();
+    }
+
 
 
 }
