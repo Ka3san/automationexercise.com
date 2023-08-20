@@ -2,7 +2,6 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
-import com.google.common.base.Verify;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -11,7 +10,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.JavascriptExecutor;
 
 
 import java.awt.*;
@@ -123,13 +121,23 @@ public class RegisterUserSteps {
     }
 
     @And("Verify that 'Logged in as username' is visible")
-    public void loggedInAsUsernameVisibility() {
+    public void loggedInAsUsernameVisibility() throws AWTException, InterruptedException {
 
 //        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id=\"aswift_1\"]")));
 //        driver.findElement(By.id("dismiss-button"));
 //        driver.switchTo().defaultContent();
 
-        driver.get("http://automationexercise.com");
+        driver.navigate().to("http://automationexercise.com");
+
+//        WebElement frame = driver.findElement(By.xpath("/html/body/script[3]"));
+//        Point location = frame.getLocation();
+//        int x = location.getX();
+//        int y = location.getY();
+//        Robot r = new Robot();
+//        r.mouseMove(x, y);
+//        r.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        r.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+//        Thread.sleep(Duration.ofSeconds(5));
 
 
 //        if (driver instanceof JavascriptExecutor) {
@@ -179,7 +187,7 @@ public class RegisterUserSteps {
     @And("Verify that 'ACCOUNT DELETED!' is visible")
     public void accountDeletedVisibility() {
 
-        driver.get("https://automationexercise.com/delete_account");
+        driver.navigate().to("https://automationexercise.com/delete_account");
 
         WebElement accountDeletedText = driver.findElement(By.cssSelector("#form > div > div > div > h2 > b"));
         String textVisible = accountDeletedText.getText();
@@ -217,7 +225,7 @@ public class RegisterUserSteps {
         assertEquals("Email Address already exist!", textVisible);
     }
 
-    //      TEST CASE 5
+    //      TEST CASE 6
 
     @And("Click on 'Contact Us' button")
     public void clickOnContactUsButton() {
@@ -246,6 +254,27 @@ public class RegisterUserSteps {
         contactUsPage.clickSubmit();
     }
 
+    @And("Click OK button")
+    public void clickOk() {
+        driver.switchTo().alert().accept();
+    }
+
+    @Then("Verify success message 'Success! Your details have been submitted successfully.' is visible")
+    public void successfulContactMessageVisibility() {
+        WebElement successText = driver.findElement(By.cssSelector("div.status.alert.alert-success"));
+        String textVisible = successText.getText();
+        assertEquals("Success! Your details have been submitted successfully.", textVisible);
+    }
+
+    @And("Click 'Home' button and verify that landed to home page successfully")
+    public void clickHomeAndVerifyLandingPage() {
+        contactUsPage.clickHome();
+
+        driver.navigate().to("https://automationexercise.com");
+
+        String title = driver.getTitle();
+        assertEquals("Automation Exercise", title);
+    }
 
 
 }

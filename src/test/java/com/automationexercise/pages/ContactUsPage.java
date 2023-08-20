@@ -1,15 +1,12 @@
 package com.automationexercise.pages;
 
 import com.automationexercise.UserData;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.awt.*;
-import java.awt.event.InputEvent;
+import static org.junit.Assert.assertEquals;
 
 public class ContactUsPage {
     @FindBy(name = "name")
@@ -22,6 +19,8 @@ public class ContactUsPage {
     private WebElement messageInputBox;
     @FindBy(name = "upload_file")
     private WebElement uploadInputBox;
+    @FindBy(css = "a.btn.btn-success")
+    private WebElement homeButton;
 
     public ContactUsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -40,6 +39,10 @@ public class ContactUsPage {
 
     public void clickSubmit() {
         uploadInputBox.submit();
+    }
+
+    public void clickHome() {
+        homeButton.click();
     }
 
 }
