@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class AccountCreatedPage {
-    @FindBy(css = "a.btn.btn-primary")
+    @FindBy(xpath = "//*[@id=\"form\"]/div/div/div/div/a")
     private WebElement continueButton;
 
 

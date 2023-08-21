@@ -15,4 +15,4 @@ Feature: User login procedure with correct email and password
 
     Examples:
       | email address    | password | name   |
-      | St7fan@gmail.com | Pass123  | Stefan |
+      | Stefa1@gmail.com | Pass123  | Stefan |

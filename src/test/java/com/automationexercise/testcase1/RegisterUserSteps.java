@@ -8,6 +8,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -130,7 +131,7 @@ public class RegisterUserSteps {
 //        driver.findElement(By.id("dismiss-button"));
 //        driver.switchTo().defaultContent();
 
-        driver.navigate().to("http://automationexercise.com");
+//        driver.navigate().to("http://automationexercise.com");
 
 //        WebElement frame = driver.findElement(By.xpath("/html/body/script[3]"));
 //        Point location = frame.getLocation();
@@ -143,17 +144,21 @@ public class RegisterUserSteps {
 //        Thread.sleep(Duration.ofSeconds(5));
 
 
-//        if (driver instanceof JavascriptExecutor) {
-//            JavascriptExecutor js = (JavascriptExecutor) driver;
-//        }
+        if (driver instanceof JavascriptExecutor) {
+            JavascriptExecutor js = (JavascriptExecutor) driver;
+        }
 
-//        JavascriptExecutor js = (JavascriptExecutor)driver;
-//        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.remove() })");
+        assert driver instanceof JavascriptExecutor;
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
+        js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
 
+        accountCreatedPage.clickContinue();
 
         WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
         String textVisible = loggedAsUserText.getText();
         assertEquals("Logged in as " + userData.getName(), textVisible);
+
     }
 
 //      TEST CASE 2
