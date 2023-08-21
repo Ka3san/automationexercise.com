@@ -20,6 +20,9 @@ public class HomePage {
     private WebElement contactUsButton;
     @FindBy(css = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(5) > a")
     private WebElement testCasesButton;
+    @FindBy(css = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(2) > a > i")
+    private WebElement productsButton;
+
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -47,6 +50,10 @@ public class HomePage {
 
     public void clickTestCases() {
         testCasesButton.click();
+    }
+
+    public void clickProducts() {
+        productsButton.click();
     }
 }
 

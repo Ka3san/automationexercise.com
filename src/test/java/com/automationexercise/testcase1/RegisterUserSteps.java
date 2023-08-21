@@ -28,6 +28,7 @@ public class RegisterUserSteps {
     private SignupPage signupPage;
     private AccountCreatedPage accountCreatedPage;
     private ContactUsPage contactUsPage;
+    private ProductsPage productsPage;
 
 
     @Given("Launch browser")
@@ -41,6 +42,7 @@ public class RegisterUserSteps {
         signupPage = new SignupPage(driver);
         accountCreatedPage = new AccountCreatedPage(driver);
         contactUsPage = new ContactUsPage(driver);
+        productsPage = new ProductsPage(driver);
 
     }
 
@@ -293,6 +295,31 @@ public class RegisterUserSteps {
         assertEquals("Automation Practice Website for UI Testing - Test Cases", title);
     }
 
+    //      TEST CASE 8
+
+    @And("Click on 'Products' button")
+    public void clickProductsButton() {
+        homePage.clickProducts();
+
+    }
+    @And("Verify user is navigated to ALL PRODUCTS page successfully")
+    public void verifyNavigationToAllProductsPage() {
+
+        driver.navigate().to("https://automationexercise.com/products");
+
+        String title = driver.getTitle();
+        assertEquals("Automation Exercise - All Products", title);
+    }
+
+    @And("The products list is visible")
+    public void productListVisibility() {
+        driver.findElement(By.cssSelector("div.features_items")).isDisplayed();
+    }
+
+    @And("Click on 'View Product' of first product")
+    public void clickViewProduct() {
+        productsPage.clickViewFirstProduct();
+    }
 
 }
 
