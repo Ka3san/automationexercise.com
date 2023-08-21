@@ -2,6 +2,7 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
+import com.google.common.base.Verify;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -274,6 +275,22 @@ public class RegisterUserSteps {
 
         String title = driver.getTitle();
         assertEquals("Automation Exercise", title);
+    }
+
+    //      TEST CASE 7
+
+    @And("Click on 'Test Cases' button")
+    public void clickTestCasesButton() {
+        homePage.clickTestCases();
+    }
+
+    @And("Verify user is navigated to test cases page successfully")
+    public void verifyNavigationToTestCasesPage() {
+
+        driver.navigate().to("https://automationexercise.com/test_cases");
+
+        String title = driver.getTitle();
+        assertEquals("Automation Practice Website for UI Testing - Test Cases", title);
     }
 
 
