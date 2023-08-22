@@ -16,5 +16,6 @@ public class AccountCreatedPage {
 
     public void clickContinue() {
         continueButton.click();
+        continueButton.click();
     }
 }

@@ -3,6 +3,8 @@ package com.automationexercise.testcase1;
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
 import com.google.common.base.Verify;
+import io.cucumber.java.AfterStep;
+import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -31,6 +33,12 @@ public class RegisterUserSteps {
     private ContactUsPage contactUsPage;
     private ProductsPage productsPage;
 
+    @AfterStep
+    public void closeFrames() {
+        JavascriptExecutor js = (JavascriptExecutor)driver;
+        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
+        js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
+    }
 
     @Given("Launch browser")
     public void launchChromeBrowser() {
@@ -120,7 +128,6 @@ public class RegisterUserSteps {
 
     @And("Click 'Continue' button")
     public void clickContinueButton() {
-
         accountCreatedPage.clickContinue();
     }
 
@@ -144,16 +151,10 @@ public class RegisterUserSteps {
 //        Thread.sleep(Duration.ofSeconds(5));
 
 
-        if (driver instanceof JavascriptExecutor) {
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-        }
+//        JavascriptExecutor js = (JavascriptExecutor)driver;
+//        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
+//        js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
 
-        assert driver instanceof JavascriptExecutor;
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
-        js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
-
-        accountCreatedPage.clickContinue();
 
         WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
         String textVisible = loggedAsUserText.getText();
@@ -190,12 +191,13 @@ public class RegisterUserSteps {
     @Then("Click 'Delete Account' button")
     public void clickDeleteAccountButton() {
         homePage.clickDeleteAccount();
+        homePage.clickDeleteAccount();
     }
 
     @And("Verify that 'ACCOUNT DELETED!' is visible")
     public void accountDeletedVisibility() {
 
-        driver.navigate().to("https://automationexercise.com/delete_account");
+//        driver.navigate().to("https://automationexercise.com/delete_account");
 
         WebElement accountDeletedText = driver.findElement(By.cssSelector("#form > div > div > div > h2 > b"));
         String textVisible = accountDeletedText.getText();
@@ -305,15 +307,20 @@ public class RegisterUserSteps {
     @And("Click on 'Products' button")
     public void clickProductsButton() {
         homePage.clickProducts();
+        homePage.clickProducts();
 
     }
     @And("Verify user is navigated to ALL PRODUCTS page successfully")
     public void verifyNavigationToAllProductsPage() {
 
-        driver.navigate().to("https://automationexercise.com/products");
+//        driver.navigate().to("https://automationexercise.com/products");
 
         String title = driver.getTitle();
         assertEquals("Automation Exercise - All Products", title);
+
+//        JavascriptExecutor js = (JavascriptExecutor)driver;
+//        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
+//        js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
     }
 
     @And("The products list is visible")
