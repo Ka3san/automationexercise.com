@@ -9,7 +9,8 @@ Feature: User register with existing email
     And Enter '<name>' and '<email>'
     Then Click 'Signup' button
     And Verify error 'Email Address already exist!' is visible
+#    And Quit browser for better performance
 
     Examples:
       | name   | email            |
-      | Stefan | St7fan@gmail.com |
+      | Stefan | Stefa3@gmail.com |

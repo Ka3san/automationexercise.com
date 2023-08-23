@@ -10,6 +10,7 @@ Feature: User login procedure with incorrect email and password
     And Enter correct '<email address>' and '<password>'
     Then Click 'login' button
     And Verify error 'Your email or password is incorrect!' is visible
+#    And Quit browser for better performance
 
     Examples:
       | email address    | password |

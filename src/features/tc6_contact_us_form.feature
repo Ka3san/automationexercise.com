@@ -12,6 +12,7 @@ Feature: Contact Us Form fill
     And Click OK button
     Then Verify success message 'Success! Your details have been submitted successfully.' is visible
     And Click 'Home' button and verify that landed to home page successfully
+#    And Quit browser for better performance
 
     Examples:
       | name | email      | subject | message      |

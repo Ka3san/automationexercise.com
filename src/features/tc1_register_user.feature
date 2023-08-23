@@ -17,7 +17,8 @@ Feature: User register procedure
     Then Verify that 'ACCOUNT CREATED!' is visible
     And Click 'Continue' button
     And Verify that 'Logged in as username' is visible
+#    And Quit browser for better performance
 
     Examples:
       | name   | email            | title | password | date of birth | first name | last name | company     | address           | address2 | country   | state   | city   | zipcode | mobile number |
-      | Stefan | Stefa1@gmail.com | Mr.   | Pass123  | 2012-12-12    | Stefan     | Telefan   | Voodoo Inc. | 197 Sesame Street | Bronx    | Singapore | Montana | Berlin | 00-666  | 265340657     |
+      | Stefan | Stefa2@gmail.com | Mr.   | Pass123  | 2012-12-12    | Stefan     | Telefan   | Voodoo Inc. | 197 Sesame Street | Bronx    | Singapore | Montana | Berlin | 00-666  | 265340657     |

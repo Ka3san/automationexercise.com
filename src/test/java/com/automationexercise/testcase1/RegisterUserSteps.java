@@ -3,6 +3,8 @@ package com.automationexercise.testcase1;
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
 import com.google.common.base.Verify;
+import io.cucumber.core.backend.ScenarioScoped;
+import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.And;
@@ -17,6 +19,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 
 import java.awt.*;
+import java.sql.Driver;
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
@@ -36,6 +39,7 @@ public class RegisterUserSteps {
 
     @AfterStep
     public void closeFrames() {
+
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
         js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
@@ -256,18 +260,19 @@ public class RegisterUserSteps {
     }
 
     @And("Upload file")
-    public void fileUpload() throws AWTException {
+    public void fileUpload() {
         contactUsPage.uploadFile();
     }
 
     @And("Click 'Submit' button")
     public void submit() {
         contactUsPage.clickSubmit();
+        driver.switchTo().alert().accept();
     }
 
     @And("Click OK button")
     public void clickOk() {
-        driver.switchTo().alert().accept();
+        contactUsPage.clickOk();
     }
 
     @Then("Verify success message 'Success! Your details have been submitted successfully.' is visible")
@@ -342,6 +347,11 @@ public class RegisterUserSteps {
     @And("Verify that detail detail is visible: product name, category, price, availability, condition, brand")
     public void checkProductDetailsVisibility() {
         productDetailsPage.checkProductDetails();
+    }
+
+    @And("Quit browser for better performance")
+    public void quitBrowser() {
+        driver.quit();
     }
 
 

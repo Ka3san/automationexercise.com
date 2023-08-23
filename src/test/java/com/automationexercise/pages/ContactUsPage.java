@@ -41,6 +41,10 @@ public class ContactUsPage {
         uploadInputBox.submit();
     }
 
+    public void clickOk() {
+        System.out.println("click ;)");
+    }
+
     public void clickHome() {
         homeButton.click();
         homeButton.click();

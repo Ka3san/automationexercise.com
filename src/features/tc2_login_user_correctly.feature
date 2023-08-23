@@ -11,8 +11,9 @@ Feature: User login procedure with correct email and password
     And Verify that 'Logged in as '<name>'' is visible
     Then Click 'Delete Account' button
     And Verify that 'ACCOUNT DELETED!' is visible
+#    And Quit browser for better performance
 
 
     Examples:
       | email address    | password | name   |
-      | Stefa1@gmail.com | Pass123  | Stefan |
+      | Stefa2@gmail.com | Pass123  | Stefan |

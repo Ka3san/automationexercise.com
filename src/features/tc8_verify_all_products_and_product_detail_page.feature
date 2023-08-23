@@ -10,3 +10,4 @@ Feature: All Products Page
     And Click on 'View Product' of first product
     Then User is landed to product detail page
     And Verify that detail detail is visible: product name, category, price, availability, condition, brand
+#    And Quit browser for better performance

@@ -11,6 +11,7 @@ Feature: User logout procedure
     And Verify that 'Logged in as '<name>'' is visible
     Then Click 'Logout' button
     And Verify that user is navigated to login page
+#    And Quit browser for better performance
 
 
     Examples:
