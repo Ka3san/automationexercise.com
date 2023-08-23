@@ -43,6 +43,7 @@ public class ContactUsPage {
 
     public void clickHome() {
         homeButton.click();
+        homeButton.click();
     }
 
 }

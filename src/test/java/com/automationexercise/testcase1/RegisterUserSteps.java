@@ -32,10 +32,11 @@ public class RegisterUserSteps {
     private AccountCreatedPage accountCreatedPage;
     private ContactUsPage contactUsPage;
     private ProductsPage productsPage;
+    private ProductDetailsPage productDetailsPage;
 
     @AfterStep
     public void closeFrames() {
-        JavascriptExecutor js = (JavascriptExecutor)driver;
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
         js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
     }
@@ -52,6 +53,7 @@ public class RegisterUserSteps {
         accountCreatedPage = new AccountCreatedPage(driver);
         contactUsPage = new ContactUsPage(driver);
         productsPage = new ProductsPage(driver);
+        productDetailsPage = new ProductDetailsPage(driver);
 
     }
 
@@ -191,7 +193,6 @@ public class RegisterUserSteps {
     @Then("Click 'Delete Account' button")
     public void clickDeleteAccountButton() {
         homePage.clickDeleteAccount();
-        homePage.clickDeleteAccount();
     }
 
     @And("Verify that 'ACCOUNT DELETED!' is visible")
@@ -280,7 +281,7 @@ public class RegisterUserSteps {
     public void clickHomeAndVerifyLandingPage() {
         contactUsPage.clickHome();
 
-        driver.navigate().to("https://automationexercise.com");
+//        driver.navigate().to("https://automationexercise.com");
 
         String title = driver.getTitle();
         assertEquals("Automation Exercise", title);
@@ -296,7 +297,7 @@ public class RegisterUserSteps {
     @And("Verify user is navigated to test cases page successfully")
     public void verifyNavigationToTestCasesPage() {
 
-        driver.navigate().to("https://automationexercise.com/test_cases");
+//        driver.navigate().to("https://automationexercise.com/test_cases");
 
         String title = driver.getTitle();
         assertEquals("Automation Practice Website for UI Testing - Test Cases", title);
@@ -307,9 +308,8 @@ public class RegisterUserSteps {
     @And("Click on 'Products' button")
     public void clickProductsButton() {
         homePage.clickProducts();
-        homePage.clickProducts();
-
     }
+
     @And("Verify user is navigated to ALL PRODUCTS page successfully")
     public void verifyNavigationToAllProductsPage() {
 
@@ -332,6 +332,18 @@ public class RegisterUserSteps {
     public void clickViewProduct() {
         productsPage.clickViewFirstProduct();
     }
+
+    @Then("User is landed to product detail page")
+    public void checkProductDetailPageLanding() {
+        String title = driver.getTitle();
+        assertEquals("Automation Exercise - Product Details", title);
+    }
+
+    @And("Verify that detail detail is visible: product name, category, price, availability, condition, brand")
+    public void checkProductDetailsVisibility() {
+        productDetailsPage.checkProductDetails();
+    }
+
 
 }
 

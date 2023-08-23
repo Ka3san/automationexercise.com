@@ -38,6 +38,7 @@ public class HomePage {
 
     public void clickDeleteAccount() {
         deleteAccountButton.click();
+        deleteAccountButton.click();
     }
 
     public void clickLogout() {
@@ -50,9 +51,12 @@ public class HomePage {
 
     public void clickTestCases() {
         testCasesButton.click();
+        testCasesButton.click();
+
     }
 
     public void clickProducts() {
+        productsButton.click();
         productsButton.click();
     }
 }
