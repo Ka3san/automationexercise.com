@@ -2,24 +2,16 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
-import com.google.common.base.Verify;
-import io.cucumber.core.backend.ScenarioScoped;
-import io.cucumber.java.AfterAll;
 import io.cucumber.java.AfterStep;
-import io.cucumber.java.BeforeStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
 import java.awt.*;
-import java.sql.Driver;
 import java.time.Duration;
 
 import static org.junit.Assert.assertEquals;
@@ -256,7 +248,6 @@ public class RegisterUserSteps {
 
     @And("Enter {string}, {string}, {string} and {string}")
     public void fillInContactUsForm(String name, String email, String subject, String message) {
-//        contactUsPage.fillInContactUsForm(userData.setName(name).setEmail(email).setSubject(subject).setMessage(message));
         contactUsPage.fillInContactUsForm(userData.setName(name).setEmail(email), subject, message);
     }
 
@@ -350,20 +341,42 @@ public class RegisterUserSteps {
         productDetailsPage.checkProductDetails();
     }
 
-    //      TEST CASE 8
+    //      TEST CASE 9
 
+    @And("Enter {string} in search input and click search button")
+    public void enterProductName(String productName) {
+        productsPage.enterProductNameAndClickSearch(productName);
+    }
 
+    @And("Verify 'SEARCHED PRODUCTS' is visible")
+    public void searchedProductsVisibility() {
+        WebElement searchedProductsText = driver.findElement(By.cssSelector("h2.title.text-center"));
+        String textVisible = searchedProductsText.getText();
+        assertEquals("SEARCHED PRODUCTS", textVisible);
+    }
 
+    @And("Verify all the products related to search are visible")
+    public void verifySearchProductsVisibility() {
 
+//        try {
+//            driver.findElement(By.cssSelector("div.productinfo.text-center")).isDisplayed();
+//            System.out.println("Search Results Visible");
+//        } catch (NoSuchElementException searchResult) {
+//            System.out.println("No Visible Search Results");
+//        }
 
-
-
-
-
-
-
-
-
+        // get text provided to search input box
+        String productName = driver.findElement(By.id("search_product")).getAttribute("value");
+        // navigate back and count all products containing search phrase
+        driver.navigate().back();
+        // parametrization in xpath selector do not work :/ have to put phrase manually
+        int countAll = driver.findElements(By.xpath("//*[contains(text(),'\" + productName + \"')]")).size();
+        // navigate forward to searched products and count products containing search phrase
+        driver.navigate().forward();
+        // parametrization in xpath selector do not work :/ have to put phrase manually
+        int countSearched = driver.findElements(By.xpath("//*[contains(text(),'\" + productName + \"')]")).size();
+        assertEquals(countAll, countSearched);
+    }
 
 
     @And("Quit browser for better performance")
