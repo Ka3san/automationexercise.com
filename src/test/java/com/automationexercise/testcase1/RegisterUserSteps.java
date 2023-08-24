@@ -256,7 +256,8 @@ public class RegisterUserSteps {
 
     @And("Enter {string}, {string}, {string} and {string}")
     public void fillInContactUsForm(String name, String email, String subject, String message) {
-        contactUsPage.fillInContactUsForm(userData.setName(name).setEmail(email).setSubject(subject).setMessage(message));
+//        contactUsPage.fillInContactUsForm(userData.setName(name).setEmail(email).setSubject(subject).setMessage(message));
+        contactUsPage.fillInContactUsForm(userData.setName(name).setEmail(email), subject, message);
     }
 
     @And("Upload file")
@@ -349,12 +350,26 @@ public class RegisterUserSteps {
         productDetailsPage.checkProductDetails();
     }
 
+    //      TEST CASE 8
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     @And("Quit browser for better performance")
     public void quitBrowser() {
         driver.quit();
     }
-
-
 }
 
 

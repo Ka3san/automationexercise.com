@@ -26,11 +26,11 @@ public class ContactUsPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void fillInContactUsForm(UserData userData) {
+    public void fillInContactUsForm(UserData userData, String subject, String message) {
         nameInputBox.sendKeys(userData.getName());
         emailInputBox.sendKeys(userData.getEmail());
-        subjectInputBox.sendKeys(userData.getSubject());
-        messageInputBox.sendKeys(userData.getMessage());
+        subjectInputBox.sendKeys(subject);
+        messageInputBox.sendKeys(message);
     }
 
     public void uploadFile() {
