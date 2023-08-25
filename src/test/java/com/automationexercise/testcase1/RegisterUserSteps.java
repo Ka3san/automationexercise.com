@@ -8,9 +8,12 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
+import java.awt.*;
+import java.awt.event.InputEvent;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -149,11 +152,6 @@ public class RegisterUserSteps {
 //        r.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 //        r.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 //        Thread.sleep(Duration.ofSeconds(5));
-
-
-//        JavascriptExecutor js = (JavascriptExecutor)driver;
-//        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
-//        js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
 
 
         WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
@@ -316,10 +314,6 @@ public class RegisterUserSteps {
 
         String title = driver.getTitle();
         assertEquals("Automation Exercise - All Products", title);
-
-//        JavascriptExecutor js = (JavascriptExecutor)driver;
-//        js.executeScript("document.querySelectorAll(\"iframe\").forEach((elem)=> { elem.parentNode.removeChild(elem); });");
-//        js.executeScript("document.querySelectorAll(\"ins.adsbygoogle\").forEach((elem) => { elem.parentNode.removeChild(elem) });");
     }
 
     @And("The products list is visible")
@@ -395,7 +389,6 @@ public class RegisterUserSteps {
         assertEquals("SUBSCRIPTION", textVisible);
     }
 
-
     @And("Enter {string} in input and click arrow button")
     public void enterEmailAndSubmitForSubscription(String email) {
         String pageTitle = driver.getTitle();
@@ -418,6 +411,26 @@ public class RegisterUserSteps {
     @And("Click 'Cart' button")
     public void clickCartButton() {
         homePage.clickCartButton();
+    }
+
+    //      TEST CASE 12
+
+    @And("Hover over first product and click 'Add to cart'")
+    public void hoverOverFirstProduct() throws AWTException, InterruptedException {
+        WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[2]/div/a"));
+
+        Point location = element.getLocation();
+        System.out.println(location);
+        double xCoordinate = location.getX();
+        System.out.println(xCoordinate);
+        double yCoordinate = location.getY();
+        System.out.println(yCoordinate);
+        int x = (int) xCoordinate;
+        int y = (int) yCoordinate;
+        Robot robot = new Robot();
+        robot.mouseMove(x, y);
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
     }
 
 
