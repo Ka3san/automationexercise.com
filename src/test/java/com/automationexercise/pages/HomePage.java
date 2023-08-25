@@ -27,6 +27,8 @@ public class HomePage {
     private WebElement subscribeEmailInputBox;
     @FindBy(id = "subscribe")
     private WebElement subscribeButton;
+    @FindBy(css = "i.fa.fa-shopping-cart")
+    private WebElement cartButton;
 
 
     public HomePage(WebDriver driver) {
@@ -68,6 +70,10 @@ public class HomePage {
     public void enterEmailAndClickArrowButtonForSubscription(UserData userData) {
         subscribeEmailInputBox.sendKeys(userData.getEmail());
         subscribeButton.click();
+    }
+
+    public void clickCartButton() {
+        cartButton.click();
     }
 }
 

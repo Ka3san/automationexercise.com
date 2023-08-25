@@ -2,7 +2,6 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
-import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -12,8 +11,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 
-import java.awt.*;
 import java.time.Duration;
+import java.util.Objects;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -29,6 +28,7 @@ public class RegisterUserSteps {
     private ContactUsPage contactUsPage;
     private ProductsPage productsPage;
     private ProductDetailsPage productDetailsPage;
+    private CartPage cartPage;
 
     @AfterStep
     public void closeFrames() {
@@ -51,6 +51,7 @@ public class RegisterUserSteps {
         contactUsPage = new ContactUsPage(driver);
         productsPage = new ProductsPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
+        cartPage = new CartPage(driver);
 
     }
 
@@ -131,7 +132,7 @@ public class RegisterUserSteps {
     }
 
     @And("Verify that 'Logged in as username' is visible")
-    public void loggedInAsUsernameVisibility() throws AWTException, InterruptedException {
+    public void loggedInAsUsernameVisibility() {
 
 //        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id=\"aswift_1\"]")));
 //        driver.findElement(By.id("dismiss-button"));
@@ -389,14 +390,20 @@ public class RegisterUserSteps {
 
     @And("Verify text 'SUBSCRIPTION'")
     public void subscriptionTextVisibility() {
-        WebElement subscriptionText = driver.findElement(By.xpath("//*[@id=\"footer\"]/div[2]/div/div[1]/div[2]/div/h2"));
+        WebElement subscriptionText = driver.findElement(By.xpath("//*[@id=\"footer\"]/div[1]/div/div[1]/div[2]/div/h2"));
         String textVisible = subscriptionText.getText();
         assertEquals("SUBSCRIPTION", textVisible);
     }
 
+
     @And("Enter {string} in input and click arrow button")
-    public void enterEmailAndSubmitForSubscription(String email) throws InterruptedException {
-        homePage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
+    public void enterEmailAndSubmitForSubscription(String email) {
+        String pageTitle = driver.getTitle();
+        if (Objects.equals(pageTitle, "Automation Exercise")) {
+            homePage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
+        } else if (Objects.equals(pageTitle, "Automation Exercise - Checkout")) {
+            cartPage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
+        }
     }
 
     @And("Verify success message 'You have been successfully subscribed!' is visible")
@@ -404,6 +411,13 @@ public class RegisterUserSteps {
         WebElement successAlert = driver.findElement(By.id("success-subscribe"));
         String textVisible = successAlert.getText();
         assertEquals("You have been successfully subscribed!", textVisible);
+    }
+
+    //      TEST CASE 11
+
+    @And("Click 'Cart' button")
+    public void clickCartButton() {
+        homePage.clickCartButton();
     }
 
 

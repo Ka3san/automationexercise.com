@@ -1,6 +1,6 @@
-Feature: All Products Page
+Feature: Product Detail Page
 
-  Scenario Outline: Verify All Products and product detail page
+  Scenario Outline: Verify search product
     Given Launch browser
     And Navigate to url http://automationexercise.com
     When Verify that home page is visible successfully
