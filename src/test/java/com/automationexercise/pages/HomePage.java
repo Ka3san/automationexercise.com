@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import com.automationexercise.UserData;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,6 +23,10 @@ public class HomePage {
     private WebElement testCasesButton;
     @FindBy(css = "#header > div > div > div > div.col-sm-8 > div > ul > li:nth-child(2) > a > i")
     private WebElement productsButton;
+    @FindBy(id = "susbscribe_email")
+    private WebElement subscribeEmailInputBox;
+    @FindBy(id = "subscribe")
+    private WebElement subscribeButton;
 
 
     public HomePage(WebDriver driver) {
@@ -58,6 +63,11 @@ public class HomePage {
     public void clickProducts() {
         productsButton.click();
         productsButton.click();
+    }
+
+    public void enterEmailAndClickArrowButtonForSubscription(UserData userData) {
+        subscribeEmailInputBox.sendKeys(userData.getEmail());
+        subscribeButton.click();
     }
 }
 

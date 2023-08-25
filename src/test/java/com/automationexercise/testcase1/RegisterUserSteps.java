@@ -2,6 +2,7 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
+import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -361,11 +362,11 @@ public class RegisterUserSteps {
 //        try {
 //            driver.findElement(By.cssSelector("div.productinfo.text-center")).isDisplayed();
 //            System.out.println("Search Results Visible");
-//        } catch (NoSuchElementException searchResult) {
+//        } catch (NoSuchElementException noSearchResults) {
 //            System.out.println("No Visible Search Results");
 //        }
 
-        // get text provided to search input box
+        // get phrase provided to search input box
         String productName = driver.findElement(By.id("search_product")).getAttribute("value");
         // navigate back and count all products containing search phrase
         driver.navigate().back();
@@ -376,6 +377,33 @@ public class RegisterUserSteps {
         // parametrization in xpath selector do not work :/ have to put phrase manually
         int countSearched = driver.findElements(By.xpath("//*[contains(text(),'\" + productName + \"')]")).size();
         assertEquals(countAll, countSearched);
+    }
+
+    //      TEST CASE 10
+
+    @And("Scroll down to footer")
+    public void scrollDown() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+    }
+
+    @And("Verify text 'SUBSCRIPTION'")
+    public void subscriptionTextVisibility() {
+        WebElement subscriptionText = driver.findElement(By.xpath("//*[@id=\"footer\"]/div[2]/div/div[1]/div[2]/div/h2"));
+        String textVisible = subscriptionText.getText();
+        assertEquals("SUBSCRIPTION", textVisible);
+    }
+
+    @And("Enter {string} in input and click arrow button")
+    public void enterEmailAndSubmitForSubscription(String email) throws InterruptedException {
+        homePage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
+    }
+
+    @And("Verify success message 'You have been successfully subscribed!' is visible")
+    public void checkSubscriptionAlertVisibility() {
+        WebElement successAlert = driver.findElement(By.id("success-subscribe"));
+        String textVisible = successAlert.getText();
+        assertEquals("You have been successfully subscribed!", textVisible);
     }
 
 
