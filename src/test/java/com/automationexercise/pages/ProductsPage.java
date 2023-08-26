@@ -13,6 +13,14 @@ public class ProductsPage {
     private WebElement searchProductInputBox;
     @FindBy(id = "submit_search")
     private WebElement searchButton;
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/a")
+    private WebElement firstProductAddToCartButton;
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/a")
+    private WebElement secondProductAddToCartButton;
+    @FindBy(css = "button.btn.btn-success.close-modal.btn-block")
+    private WebElement continueShoppingButton;
+    @FindBy(xpath = "//*[@id=\"cartModal\"]/div/div/div[2]/p[2]/a/u")
+    private WebElement viewCartButton;
 
 
     public ProductsPage(WebDriver driver) {
@@ -26,6 +34,17 @@ public class ProductsPage {
     public void enterProductNameAndClickSearch(String productName) {
         searchProductInputBox.sendKeys(productName);
         searchButton.click();
+    }
 
+    public void addFirstProductToCart() {
+        firstProductAddToCartButton.click();
+    }
+
+    public void clickContinueShopping() {
+        continueShoppingButton.click();
+    }
+
+    public void clickViewCart() {
+        viewCartButton.click();
     }
 }

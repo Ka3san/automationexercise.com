@@ -10,11 +10,6 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Coordinates;
-import org.openqa.selenium.interactions.Locatable;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
 
 import java.awt.*;
 import java.awt.event.InputEvent;
@@ -421,29 +416,72 @@ public class RegisterUserSteps {
     //      TEST CASE 12
 
     @And("Hover over first product and click 'Add to cart'")
-    public void hoverOverFirstProduct() throws AWTException {
+    public void hoverOverFirstProduct() throws AWTException, InterruptedException {
         WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/a"));
 
-        // content window size
-        JavascriptExecutor js = (JavascriptExecutor) driver;
-        int contentHeight = ((Number) js.executeScript("return window.innerHeight")).intValue();
-        int contentWidth = ((Number) js.executeScript("return window.innerWidth")).intValue();
-        System.out.println(contentHeight + " " + contentWidth);
+//        // content window size
+//        JavascriptExecutor js = (JavascriptExecutor) driver;
+//        int contentHeight = ((Number) js.executeScript("return window.innerHeight")).intValue();
+//        int contentWidth = ((Number) js.executeScript("return window.innerWidth")).intValue();
+//        System.out.println(contentHeight + " " + contentWidth);
+//
+//        Point location = element.getLocation();
+//        // System.out.println("location: " + location);
+//        double xCoordinate = location.getX();
+//        double yCoordinate = location.getY();
+//        int x = (int) xCoordinate;
+//        int y = (int) yCoordinate;
+//        Robot robot = new Robot();
+//        robot.mouseMove(x + 10, y + 180);
+//        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+//
+
+        productsPage.addFirstProductToCart();
+    }
+
+    @And("Click 'Continue Shopping' button")
+    public void clickContinueShoppingButton() {
+        productsPage.clickContinueShopping();
+    }
+
+    @And("Hover over second product and click 'Add to cart'")
+    public void hoverOverSecondProduct() throws AWTException {
+        WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/a"));
+
+        // here it works but only when first product is added with element.click() ???
 
         Point location = element.getLocation();
-        System.out.println("location: " + location);
+//        System.out.println("location: " + location);
         double xCoordinate = location.getX();
         double yCoordinate = location.getY();
         int x = (int) xCoordinate;
         int y = (int) yCoordinate;
-        System.out.println(x + " " + y);
         Robot robot = new Robot();
         robot.mouseMove(x, y);
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+    }
 
-        // ad blocker??
+    @And("Click 'View Cart' button")
+    public void clickViewCartButton() {
+        productsPage.clickViewCart();
+    }
 
+    @And("Verify both products are added to Cart")
+    public void verifyProductsInCart() {
+        WebElement firstProduct = driver.findElement(By.id("product-1"));
+        WebElement firstProductName = driver.findElement(By.xpath("//*[@id=\"product-1\"]/td[2]/h4/a"));
+        assertTrue(firstProduct.isDisplayed());
+        assertEquals("Blue Top", firstProductName.getText());
+        WebElement secondProduct = driver.findElement(By.id("product-2"));
+        WebElement secondProductName = driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[2]/h4/a"));
+        assertTrue(secondProduct.isDisplayed());
+        assertEquals("Men Tshirt", secondProductName.getText());
     }
 
 
@@ -451,6 +489,8 @@ public class RegisterUserSteps {
     public void quitBrowser() {
         driver.quit();
     }
+
+
 }
 
 
