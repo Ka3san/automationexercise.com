@@ -10,6 +10,10 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.interactions.Coordinates;
+import org.openqa.selenium.interactions.Locatable;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 
 import java.awt.*;
@@ -43,6 +47,7 @@ public class RegisterUserSteps {
 
     @Given("Launch browser")
     public void launchChromeBrowser() {
+
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
@@ -416,21 +421,29 @@ public class RegisterUserSteps {
     //      TEST CASE 12
 
     @And("Hover over first product and click 'Add to cart'")
-    public void hoverOverFirstProduct() throws AWTException, InterruptedException {
-        WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[2]/div/a"));
+    public void hoverOverFirstProduct() throws AWTException {
+        WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/a"));
+
+        // content window size
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        int contentHeight = ((Number) js.executeScript("return window.innerHeight")).intValue();
+        int contentWidth = ((Number) js.executeScript("return window.innerWidth")).intValue();
+        System.out.println(contentHeight + " " + contentWidth);
 
         Point location = element.getLocation();
-        System.out.println(location);
+        System.out.println("location: " + location);
         double xCoordinate = location.getX();
-        System.out.println(xCoordinate);
         double yCoordinate = location.getY();
-        System.out.println(yCoordinate);
         int x = (int) xCoordinate;
         int y = (int) yCoordinate;
+        System.out.println(x + " " + y);
         Robot robot = new Robot();
         robot.mouseMove(x, y);
         robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
         robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+        // ad blocker??
+
     }
 
 
