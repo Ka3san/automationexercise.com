@@ -137,6 +137,9 @@ public class RegisterUserSteps {
 
     @And("Verify that 'Logged in as username' is visible")
     public void loggedInAsUsernameVisibility() {
+        WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
+        String textVisible = loggedAsUserText.getText();
+        assertEquals("Logged in as " + userData.getName(), textVisible);
 
 //        driver.switchTo().frame(driver.findElement(By.xpath("//*[@id=\"aswift_1\"]")));
 //        driver.findElement(By.id("dismiss-button"));
@@ -153,11 +156,6 @@ public class RegisterUserSteps {
 //        r.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 //        r.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 //        Thread.sleep(Duration.ofSeconds(5));
-
-
-        WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
-        String textVisible = loggedAsUserText.getText();
-        assertEquals("Logged in as " + userData.getName(), textVisible);
 
     }
 
@@ -194,9 +192,6 @@ public class RegisterUserSteps {
 
     @And("Verify that 'ACCOUNT DELETED!' is visible")
     public void accountDeletedVisibility() {
-
-//        driver.navigate().to("https://automationexercise.com/delete_account");
-
         WebElement accountDeletedText = driver.findElement(By.cssSelector("#form > div > div > div > h2 > b"));
         String textVisible = accountDeletedText.getText();
         assertEquals("ACCOUNT DELETED!", textVisible);
@@ -224,7 +219,6 @@ public class RegisterUserSteps {
     }
 
     //      TEST CASE 5
-
 
     @And("Verify error 'Email Address already exist!' is visible")
     public void emailAddressAlreadyExistsErrorVisibility() {
@@ -278,9 +272,6 @@ public class RegisterUserSteps {
     @And("Click 'Home' button and verify that landed to home page successfully")
     public void clickHomeAndVerifyLandingPage() {
         contactUsPage.clickHome();
-
-//        driver.navigate().to("https://automationexercise.com");
-
         String title = driver.getTitle();
         assertEquals("Automation Exercise", title);
     }
@@ -294,9 +285,6 @@ public class RegisterUserSteps {
 
     @And("Verify user is navigated to test cases page successfully")
     public void verifyNavigationToTestCasesPage() {
-
-//        driver.navigate().to("https://automationexercise.com/test_cases");
-
         String title = driver.getTitle();
         assertEquals("Automation Practice Website for UI Testing - Test Cases", title);
     }
@@ -355,13 +343,6 @@ public class RegisterUserSteps {
     @And("Verify all the products related to search are visible")
     public void verifySearchProductsVisibility() {
 
-//        try {
-//            driver.findElement(By.cssSelector("div.productinfo.text-center")).isDisplayed();
-//            System.out.println("Search Results Visible");
-//        } catch (NoSuchElementException noSearchResults) {
-//            System.out.println("No Visible Search Results");
-//        }
-
         // get phrase provided to search input box
         String productName = driver.findElement(By.id("search_product")).getAttribute("value");
         // navigate back and count all products containing search phrase
@@ -373,6 +354,14 @@ public class RegisterUserSteps {
         // parametrization in xpath selector do not work :/ have to put phrase manually
         int countSearched = driver.findElements(By.xpath("//*[contains(text(),'\" + productName + \"')]")).size();
         assertEquals(countAll, countSearched);
+
+//        try {
+//            driver.findElement(By.cssSelector("div.productinfo.text-center")).isDisplayed();
+//            System.out.println("Search Results Visible");
+//        } catch (NoSuchElementException noSearchResults) {
+//            System.out.println("No Visible Search Results");
+//        }
+
     }
 
     //      TEST CASE 10
@@ -393,8 +382,10 @@ public class RegisterUserSteps {
     @And("Enter {string} in input and click arrow button")
     public void enterEmailAndSubmitForSubscription(String email) {
         String pageTitle = driver.getTitle();
+        // test case 10
         if (Objects.equals(pageTitle, "Automation Exercise")) {
             homePage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
+        // test case 11
         } else if (Objects.equals(pageTitle, "Automation Exercise - Checkout")) {
             cartPage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
         }
@@ -420,6 +411,8 @@ public class RegisterUserSteps {
     public void hoverOverFirstProduct() throws AWTException, InterruptedException {
         WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/a"));
 
+        productsPage.addFirstProductToCart();
+
 //        // content window size
 //        JavascriptExecutor js = (JavascriptExecutor) driver;
 //        int contentHeight = ((Number) js.executeScript("return window.innerHeight")).intValue();
@@ -440,7 +433,6 @@ public class RegisterUserSteps {
 //        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 //
 
-        productsPage.addFirstProductToCart();
     }
 
     @And("Click 'Continue Shopping' button")
@@ -451,6 +443,8 @@ public class RegisterUserSteps {
     @And("Hover over second product and click 'Add to cart'")
     public void hoverOverSecondProduct() throws AWTException {
         WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/a"));
+
+        productsPage.addSecondProductToCart();
 
         // here it workED yesterday but not today??? something is def wrong with this page elements location...
 //
@@ -467,7 +461,6 @@ public class RegisterUserSteps {
 //        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
 //        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
-        productsPage.addSecondProductToCart();
     }
 
     @And("Click 'View Cart' button")
