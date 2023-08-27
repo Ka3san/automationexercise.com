@@ -47,4 +47,8 @@ public class ProductsPage {
     public void clickViewCart() {
         viewCartButton.click();
     }
+
+    public void addSecondProductToCart() {
+        secondProductAddToCartButton.click();
+    }
 }

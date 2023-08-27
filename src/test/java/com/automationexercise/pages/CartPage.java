@@ -6,12 +6,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import static org.junit.Assert.assertEquals;
+
 public class CartPage {
     @FindBy(id = "susbscribe_email")
     private WebElement subscribeEmailInputBox;
     @FindBy(id = "subscribe")
     private WebElement subscribeButton;
-
 
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -21,4 +22,6 @@ public class CartPage {
         subscribeEmailInputBox.sendKeys(userData.getEmail());
         subscribeButton.click();
     }
+
+
 }

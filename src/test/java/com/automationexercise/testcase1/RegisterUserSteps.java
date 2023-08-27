@@ -2,6 +2,7 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
+import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -451,20 +452,22 @@ public class RegisterUserSteps {
     public void hoverOverSecondProduct() throws AWTException {
         WebElement element = driver.findElement(By.xpath("/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/a"));
 
-        // here it works but only when first product is added with element.click() ???
+        // here it workED yesterday but not today??? something is def wrong with this page elements location...
+//
+//        Point location = element.getLocation();
+////        System.out.println("location: " + location);
+//        double xCoordinate = location.getX();
+//        double yCoordinate = location.getY();
+//        int x = (int) xCoordinate;
+//        int y = (int) yCoordinate;
+//        Robot robot = new Robot();
+//        robot.mouseMove(x, y);
+//        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
+//        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
-        Point location = element.getLocation();
-//        System.out.println("location: " + location);
-        double xCoordinate = location.getX();
-        double yCoordinate = location.getY();
-        int x = (int) xCoordinate;
-        int y = (int) yCoordinate;
-        Robot robot = new Robot();
-        robot.mouseMove(x, y);
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-        robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+        productsPage.addSecondProductToCart();
     }
 
     @And("Click 'View Cart' button")
@@ -482,6 +485,37 @@ public class RegisterUserSteps {
         WebElement secondProductName = driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[2]/h4/a"));
         assertTrue(secondProduct.isDisplayed());
         assertEquals("Men Tshirt", secondProductName.getText());
+    }
+
+    @And("Verify their prices, quantity and total price")
+    public void verifyProductsInCartPurchaseDetails() {
+        // first product
+        WebElement firstPrice = driver.findElement(By.xpath("//*[@id=\"product-1\"]/td[3]/p"));
+        WebElement firstQuantity = driver.findElement(By.xpath("//*[@id=\"product-1\"]/td[4]/button"));
+        WebElement firstTotal = driver.findElement(By.xpath("//*[@id=\"product-1\"]/td[5]/p"));
+        String firstProductPriceText = firstPrice.getText();
+        String firstProductPriceValue = firstProductPriceText.replaceAll("Rs. ", "");
+        int firstProductPrice = Integer.parseInt(firstProductPriceValue);
+        String firstProductQuantityText = firstQuantity.getText();
+        int firstProductQuantity = Integer.parseInt(firstProductQuantityText);
+        String firstProductTotalText = firstTotal.getText();
+        String firstProductTotalValue = firstProductTotalText.replaceAll("Rs. ", "");
+        int firstProductTotalPrice = Integer.parseInt(firstProductTotalValue);
+        assertEquals(firstProductPrice * firstProductQuantity, firstProductTotalPrice, 0.0);
+
+        // second product
+        WebElement secondPrice = driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[3]/p"));
+        WebElement secondQuantity = driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[4]/button"));
+        WebElement secondTotal = driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[5]/p"));
+        String secondProductPriceText = secondPrice.getText();
+        String secondProductPriceValue = secondProductPriceText.replaceAll("Rs. ", "");
+        int secondProductPrice = Integer.parseInt(secondProductPriceValue);
+        String secondProductQuantityText = secondQuantity.getText();
+        int secondProductQuantity = Integer.parseInt(secondProductQuantityText);
+        String secondProductTotalText = secondTotal.getText();
+        String secondProductTotalValue = secondProductTotalText.replaceAll("Rs. ", "");
+        int secondProductTotalPrice = Integer.parseInt(secondProductTotalValue);
+        assertEquals(secondProductPrice * secondProductQuantity, secondProductTotalPrice, 0.0);
     }
 
 

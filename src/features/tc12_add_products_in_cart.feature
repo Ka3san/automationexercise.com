@@ -10,7 +10,7 @@ Feature: Products Page & Cart Page
     And Hover over second product and click 'Add to cart'
     And Click 'View Cart' button
     And Verify both products are added to Cart
-#    And Verify their prices, quantity and total price
+    And Verify their prices, quantity and total price
 #    And Quit browser for better performance
 
     Examples:
