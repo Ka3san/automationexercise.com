@@ -29,6 +29,8 @@ public class HomePage {
     private WebElement subscribeButton;
     @FindBy(css = "i.fa.fa-shopping-cart")
     private WebElement cartButton;
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[26]/div/div[2]/ul/li/a")
+    private WebElement rs850ViewProductButton;
 
 
     public HomePage(WebDriver driver) {
@@ -59,7 +61,6 @@ public class HomePage {
     public void clickTestCases() {
         testCasesButton.click();
         testCasesButton.click();
-
     }
 
     public void clickProducts() {
@@ -75,5 +76,12 @@ public class HomePage {
     public void clickCartButton() {
         cartButton.click();
     }
+
+    public void clickViewProductRs850() {
+        rs850ViewProductButton.click();
+        rs850ViewProductButton.click();
+    }
+
+
 }
 

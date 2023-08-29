@@ -20,7 +20,10 @@ public class ProductDetailsPage {
     private WebElement product1Condition;
     @FindBy(xpath = "/html/body/section/div/div/div[2]/div[2]/div[2]/div/p[4]")
     private WebElement product1Brand;
-
+    @FindBy(xpath = "//*[@id=\"quantity\"]")
+    private WebElement productQuantityInputBox;
+    @FindBy(css = "button.btn.btn-default.cart")
+    private WebElement addToCartButton;
 
     public ProductDetailsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -33,5 +36,14 @@ public class ProductDetailsPage {
         assertTrue(product1Availability.isDisplayed());
         assertTrue(product1Condition.isDisplayed());
         assertTrue(product1Brand.isDisplayed());
+    }
+
+    public void changeQuantity(String pcs) {
+        productQuantityInputBox.clear();
+        productQuantityInputBox.sendKeys(pcs);
+    }
+
+    public void clickAddToCartButton() {
+        addToCartButton.click();
     }
 }

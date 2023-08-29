@@ -385,7 +385,7 @@ public class RegisterUserSteps {
         // test case 10
         if (Objects.equals(pageTitle, "Automation Exercise")) {
             homePage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
-        // test case 11
+            // test case 11
         } else if (Objects.equals(pageTitle, "Automation Exercise - Checkout")) {
             cartPage.enterEmailAndClickArrowButtonForSubscription(userData.setEmail(email));
         }
@@ -494,7 +494,7 @@ public class RegisterUserSteps {
         String firstProductTotalText = firstTotal.getText();
         String firstProductTotalValue = firstProductTotalText.replaceAll("Rs. ", "");
         int firstProductTotalPrice = Integer.parseInt(firstProductTotalValue);
-        assertEquals(firstProductPrice * firstProductQuantity, firstProductTotalPrice, 0.0);
+        assertEquals(firstProductPrice * firstProductQuantity, firstProductTotalPrice);
 
         // second product
         WebElement secondPrice = driver.findElement(By.xpath("//*[@id=\"product-2\"]/td[3]/p"));
@@ -508,8 +508,38 @@ public class RegisterUserSteps {
         String secondProductTotalText = secondTotal.getText();
         String secondProductTotalValue = secondProductTotalText.replaceAll("Rs. ", "");
         int secondProductTotalPrice = Integer.parseInt(secondProductTotalValue);
-        assertEquals(secondProductPrice * secondProductQuantity, secondProductTotalPrice, 0.0);
+        assertEquals(secondProductPrice * secondProductQuantity, secondProductTotalPrice);
     }
+
+    //      TEST CASE 13
+
+    @And("Click 'View Product' for any product on home page")
+    public void clickViewAnyProduct() {
+        homePage.clickViewProductRs850();
+    }
+
+    @And("Verify product detail is opened")
+    public void checkProductDetailPageIsOpened() {
+        String title = driver.getTitle();
+        assertEquals("Automation Exercise - Product Details", title);
+    }
+
+    @And("Increase quantity to {string}")
+    public void increaseQuantityTo(String pcs) {
+        productDetailsPage.changeQuantity(pcs);
+    }
+
+    @And("Click 'Add to cart' button")
+    public void clickAddToCart() {
+        productDetailsPage.clickAddToCartButton();
+    }
+
+//    @And("Click 'View Cart' button")
+//    public void clickViewCartButton() {
+//        here should be called method from ProductDetailsPage but 'Added!' dialog is the same for all sites
+//        with the same 'View Cart' button, so feature file can use method from ProductsPage and it works
+//    }
+
 
 
     @And("Quit browser for better performance")
