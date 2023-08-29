@@ -30,7 +30,7 @@ public class HomePage {
     @FindBy(css = "i.fa.fa-shopping-cart")
     private WebElement cartButton;
     @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[26]/div/div[2]/ul/li/a")
-    private WebElement rs850ViewProductButton;
+    private WebElement pureCottonNeonGreenTshirtViewProductButton;
 
 
     public HomePage(WebDriver driver) {
@@ -77,11 +77,10 @@ public class HomePage {
         cartButton.click();
     }
 
-    public void clickViewProductRs850() {
-        rs850ViewProductButton.click();
-        rs850ViewProductButton.click();
+    public void clickViewProductPureCottonNeonGreenTshirt() {
+        pureCottonNeonGreenTshirtViewProductButton.click();
+        pureCottonNeonGreenTshirtViewProductButton.click();
     }
-
 
 }
 

@@ -46,4 +46,5 @@ public class ProductDetailsPage {
     public void clickAddToCartButton() {
         addToCartButton.click();
     }
+
 }

@@ -2,18 +2,15 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
-import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
-import org.openqa.selenium.Point;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -515,7 +512,7 @@ public class RegisterUserSteps {
 
     @And("Click 'View Product' for any product on home page")
     public void clickViewAnyProduct() {
-        homePage.clickViewProductRs850();
+        homePage.clickViewProductPureCottonNeonGreenTshirt();
     }
 
     @And("Verify product detail is opened")
@@ -540,7 +537,18 @@ public class RegisterUserSteps {
 //        with the same 'View Cart' button, so feature file can use method from ProductsPage and it works
 //    }
 
+    @And("Verify that product is displayed in cart page with exact quantity")
+    public void verifyProductQuantityInCart() {
+        String quantityInCart = driver.findElement(By.xpath("//*[@id=\"product-31\"]/td[4]/button")).getText();
+        System.out.println("In cart: " + quantityInCart);
+        driver.navigate().back();
+        // same case, 'Continue Shopping' button in dialog 'Added!' clicked by ProductPage
+        productsPage.clickContinueShopping();
+        String providedQuantity = driver.findElement(By.xpath("//*[@id=\"quantity\"]")).getAttribute("value");
+        System.out.println("Provided quantity: " + providedQuantity);
+        assertEquals(providedQuantity, quantityInCart);
 
+    }
 
     @And("Quit browser for better performance")
     public void quitBrowser() {

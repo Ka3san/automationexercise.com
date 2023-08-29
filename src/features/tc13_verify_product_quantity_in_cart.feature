@@ -9,7 +9,7 @@ Feature: Products Page & Cart Page
     And Increase quantity to '<pcs>'
     And Click 'Add to cart' button
     And Click 'View Cart' button
-#    And Verify that product is displayed in cart page with exact quantity
+    And Verify that product is displayed in cart page with exact quantity
 #    And Quit browser for better performance
 
     Examples:
