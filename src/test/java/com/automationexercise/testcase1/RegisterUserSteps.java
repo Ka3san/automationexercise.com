@@ -371,7 +371,7 @@ public class RegisterUserSteps {
 
     @And("Verify text 'SUBSCRIPTION'")
     public void subscriptionTextVisibility() {
-        WebElement subscriptionText = driver.findElement(By.xpath("//*[@id=\"footer\"]/div[1]/div/div[1]/div[2]/div/h2"));
+        WebElement subscriptionText = driver.findElement(By.cssSelector("#footer > div.footer-widget > div > div > div.col-sm-3.col-sm-offset-1 > div > h2"));
         String textVisible = subscriptionText.getText();
         assertEquals("SUBSCRIPTION", textVisible);
     }
@@ -547,7 +547,6 @@ public class RegisterUserSteps {
         String providedQuantity = driver.findElement(By.xpath("//*[@id=\"quantity\"]")).getAttribute("value");
         System.out.println("Provided quantity: " + providedQuantity);
         assertEquals(providedQuantity, quantityInCart);
-
     }
 
     @And("Quit browser for better performance")
