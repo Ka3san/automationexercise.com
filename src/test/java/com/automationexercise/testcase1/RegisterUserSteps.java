@@ -540,14 +540,22 @@ public class RegisterUserSteps {
     @And("Verify that product is displayed in cart page with exact quantity")
     public void verifyProductQuantityInCart() {
         String quantityInCart = driver.findElement(By.xpath("//*[@id=\"product-31\"]/td[4]/button")).getText();
-        System.out.println("In cart: " + quantityInCart);
+//        System.out.println("In cart: " + quantityInCart);
         driver.navigate().back();
         // same case, 'Continue Shopping' button in dialog 'Added!' clicked by ProductPage
         productsPage.clickContinueShopping();
         String providedQuantity = driver.findElement(By.xpath("//*[@id=\"quantity\"]")).getAttribute("value");
-        System.out.println("Provided quantity: " + providedQuantity);
+//        System.out.println("Provided quantity: " + providedQuantity);
         assertEquals(providedQuantity, quantityInCart);
     }
+
+    //      TEST CASE 13
+
+    @And("Add products to cart")
+    public void addProductsToCart() {
+        homePage.addProductsToCart();
+    }
+
 
     @And("Quit browser for better performance")
     public void quitBrowser() {

@@ -1,6 +1,6 @@
 Feature: Products Page & Cart Page
 
-  Scenario Outline: Add Products in Cart
+  Scenario Outline: Verify quantity of products in Cart
     Given Launch browser
     And Navigate to url http://automationexercise.com
     When Verify that home page is visible successfully

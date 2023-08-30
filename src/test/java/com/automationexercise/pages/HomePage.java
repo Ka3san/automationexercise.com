@@ -30,8 +30,21 @@ public class HomePage {
     @FindBy(css = "i.fa.fa-shopping-cart")
     private WebElement cartButton;
     @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[26]/div/div[2]/ul/li/a")
-    private WebElement pureCottonNeonGreenTshirtViewProductButton;
+    private WebElement pureCottonNeonGreenTShirtViewProductButton;
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[4]/div/div[1]/div[1]/a")
+    private WebElement sleevelessDressAddToCartButton;
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[2]/div/div[1]/div[1]/a")
+    private WebElement blueTopAddToCartButton;
+    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/a")
+    private WebElement menTShirtAddToCartButton;
 
+//    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[9]/div/div[1]/div[2]/div/a")
+//    private WebElement fancyGreenTopAddToCartButton;
+//    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[25]/div/div[1]/div[1]/a")
+//    private WebElement premiumPoloTShirtsAddToCartButton;
+
+    @FindBy(xpath = "//*[@id=\"cartModal\"]/div/div/div[3]/button")
+    private WebElement continueShoppingButton;
 
     public HomePage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -78,8 +91,17 @@ public class HomePage {
     }
 
     public void clickViewProductPureCottonNeonGreenTshirt() {
-        pureCottonNeonGreenTshirtViewProductButton.click();
-        pureCottonNeonGreenTshirtViewProductButton.click();
+        pureCottonNeonGreenTShirtViewProductButton.click();
+        pureCottonNeonGreenTShirtViewProductButton.click();
+    }
+
+    public void addProductsToCart() {
+        sleevelessDressAddToCartButton.click();
+        continueShoppingButton.click();
+        blueTopAddToCartButton.click();
+        continueShoppingButton.click();
+        menTShirtAddToCartButton.click();
+        continueShoppingButton.click();
     }
 
 }
