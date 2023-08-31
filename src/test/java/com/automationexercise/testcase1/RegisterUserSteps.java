@@ -556,6 +556,21 @@ public class RegisterUserSteps {
         homePage.addProductsToCart();
     }
 
+    @And("Verify that cart page is displayed")
+    public void verifyCartPageIsDisplayed() {
+        assertTrue(driver.findElement(By.xpath("//*[@id=\"cart_items\"]/div/div[1]/ol/li[2]")).isDisplayed());
+    }
+
+    @And("Click Proceed To Checkout")
+    public void clickProceedToCheckout() {
+        cartPage.clickCheckoutButton();
+    }
+
+    @And("Click Register | Login button")
+    public void clickRegisterLoginButton() {
+        cartPage.clickRegisterLogin();
+    }
+
 
     @And("Quit browser for better performance")
     public void quitBrowser() {

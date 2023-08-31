@@ -38,6 +38,7 @@ public class HomePage {
     @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/a")
     private WebElement menTShirtAddToCartButton;
 
+// TODO:
 //    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[9]/div/div[1]/div[2]/div/a")
 //    private WebElement fancyGreenTopAddToCartButton;
 //    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[25]/div/div[1]/div[1]/a")

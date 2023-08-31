@@ -12,6 +12,10 @@ public class CartPage {
     private WebElement subscribeEmailInputBox;
     @FindBy(id = "subscribe")
     private WebElement subscribeButton;
+    @FindBy(css = "a.btn.btn-default.check_out")
+    private WebElement proceedToCheckoutButton;
+    @FindBy(xpath = "//*[@id=\"checkoutModal\"]/div/div/div[2]/p[2]/a/u")
+    private WebElement checkoutModalRegisterLoginButton;
 
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -22,5 +26,11 @@ public class CartPage {
         subscribeButton.click();
     }
 
+    public void clickCheckoutButton() {
+        proceedToCheckoutButton.click();
+    }
 
+    public void clickRegisterLogin() {
+        checkoutModalRegisterLoginButton.click();
+    }
 }
