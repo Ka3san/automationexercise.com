@@ -102,5 +102,18 @@ public class SignupPage {
         createAccountButton.submit();
     }
 
+    //  '<password>', '<first name>', '<last name>', '<address>', '<country>', '<state>', '<city>', '<zipcode>', '<mobile number>'
+
+    public void fillAllDetailsToRegisterUserWhileCheckout(UserData userData) {
+        passwordInputBox.sendKeys(userData.getPassword());
+        firstNameInputBox.sendKeys(userData.getFirstName());
+        lastNameInputBox.sendKeys(userData.getLastName());
+        addressInputBox.sendKeys(userData.getAddress());
+        countryInputBox.sendKeys(userData.getCountry());
+        stateInputBox.sendKeys(userData.getState());
+        cityInputBox.sendKeys(userData.getCity());
+        zipcodeInputBox.sendKeys(userData.getZipCode());
+        mobileNumberInputBox.sendKeys(userData.getMobileNumber());
+    }
 
 }

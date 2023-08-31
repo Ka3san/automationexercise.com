@@ -2,6 +2,7 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
+import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -569,6 +570,34 @@ public class RegisterUserSteps {
     @And("Click Register | Login button")
     public void clickRegisterLoginButton() {
         cartPage.clickRegisterLogin();
+    }
+
+    @And("Fill {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string}, {string} in Signup and create account")
+    public void fillAllDetailsAndCreateAccount(String name, String email, String password, String firstName, String lastName, String address, String country, String state, String city, String zipcode, String mobileNumber) {
+        loginPage.fillNameAndEmail(userData.setName(name).setEmail(email));
+        loginPage.clickSignupButton();
+        signupPage.fillAllDetailsToRegisterUserWhileCheckout(userData.setPassword(password).setFirstName(firstName).setLastName(lastName).setAddress(address).setCountry(country).setState(state).setCity(city).setZipCode(zipcode).setMobileNumber(mobileNumber));
+        signupPage.clickCreateAccount();
+    }
+
+    @And("Verify 'ACCOUNT CREATED!' and click 'Continue' button")
+    public void verifyAccountCreatedAndClickContinue() {
+        WebElement accountCreatedPageText = driver.findElement(By.cssSelector("#form > div > div > div > h2 > b"));
+        String textVisible = accountCreatedPageText.getText();
+        assertEquals("ACCOUNT CREATED!", textVisible);
+        accountCreatedPage.clickContinue();
+    }
+
+    @And("Verify ' Logged in as username' at top")
+    public void verifyLoggedAsUsername() {
+        WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
+        String textVisible = loggedAsUserText.getText();
+        assertEquals("Logged in as " + userData.getName(), textVisible);
+    }
+
+    @And("Click 'Proceed To Checkout' button")
+    public void clickProceedToCheckoutButton() {
+        cartPage.clickCheckoutButton();
     }
 
 
