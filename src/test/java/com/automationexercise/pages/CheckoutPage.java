@@ -17,6 +17,10 @@ public class CheckoutPage {
     private WebElement secondItemDetails;
     @FindBy(id = "product-2")
     private WebElement thirdItemDetails;
+    @FindBy(css = "textarea.form-control")
+    private WebElement commentTextArea;
+    @FindBy(css = "a.btn.btn-default.check_out")
+    private WebElement placeOrderButton;
 
 
     public CheckoutPage(WebDriver driver) {
@@ -36,5 +40,9 @@ public class CheckoutPage {
 
     }
 
+    public void addCommentAndClickPlaceOrder(String description) {
+        commentTextArea.sendKeys(description);
+        placeOrderButton.click();
+    }
 
 }

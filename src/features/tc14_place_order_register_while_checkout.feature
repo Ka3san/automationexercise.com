@@ -15,8 +15,8 @@ Feature: Products Page & Cart Page
     And Click 'Cart' button
     And Click 'Proceed To Checkout' button
     And Verify '<address details>' and Review Your Order
-#    And Enter description in comment text area and click 'Place Order'
-#    And Enter payment details: Name on Card, Card Number, CVC, Expiration date
+    And Enter '<description>' in comment text area and click 'Place Order'
+    And Enter payment details: '<Name on Card>', '<Card Number>', '<CVC>', '<Expiration date>'
 #    And Click 'Pay and Confirm Order' button
 #    Then Verify success message 'Your order has been placed successfully!'
 #    And Click 'Delete Account' button
@@ -24,5 +24,5 @@ Feature: Products Page & Cart Page
 #    And Quit browser for better performance
 
     Examples:
-      | name   | email            | password | first name | last name | address           | country   | state   | city   | zipcode | mobile number | address details                                                         |
-      | Stefan | Stefa2@gmail.com | Pass123  | Stefan     | Telefan   | 197 Sesame Street | Singapore | Montana | Berlin | 00-666  | 265340657     | 265340657 666 Berlin Montana Singapore 197 Sesame Street Telefan Stefan |
+      | description                    | name   | email            | password | first name | last name | address           | country   | state   | city   | zipcode | mobile number | address details                                                         | Name on Card   | Card Number | CVC | Expiration date |
+      | add a comment about your order | Stefan | Stefa2@gmail.com | Pass123  | Stefan     | Telefan   | 197 Sesame Street | Singapore | Montana | Berlin | 00-666  | 265340657     | 265340657 666 Berlin Montana Singapore 197 Sesame Street Telefan Stefan | Stefan Telefan | 98856799879 | 086 | 11/2029         |

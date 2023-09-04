@@ -29,6 +29,7 @@ public class RegisterUserSteps {
     private ProductDetailsPage productDetailsPage;
     private CartPage cartPage;
     private CheckoutPage checkoutPage;
+    private PaymentPage paymentPage;
 
     @AfterStep
     public void closeFrames() {
@@ -54,6 +55,7 @@ public class RegisterUserSteps {
         productDetailsPage = new ProductDetailsPage(driver);
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
+        paymentPage = new PaymentPage(driver);
 
     }
 
@@ -614,6 +616,18 @@ public class RegisterUserSteps {
         assertEquals(cartPage.checkItemsInCart(), checkoutPage.reviewOrder());
         driver.navigate().forward();
     }
+
+    @And("Enter {string} in comment text area and click 'Place Order'")
+    public void enterDescriptionInTextAreaAndPlaceOrder(String description) {
+        checkoutPage.addCommentAndClickPlaceOrder(description);
+    }
+    @And("Enter payment details: {string}, {string}, {string}, {string}")
+    public void enterPaymentDetails(String nameOnCard, String cardNumber, String cvc, String expirationDate) {
+        paymentPage.fillInPaymentDetails(nameOnCard, cardNumber, cvc, expirationDate);
+    }
+
+
+
 
 
     @And("Quit browser for better performance")

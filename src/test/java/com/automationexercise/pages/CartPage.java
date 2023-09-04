@@ -45,11 +45,11 @@ public class CartPage {
 
 
     public String checkItemsInCart() {
-        List<String> checkoutProductDetails = new ArrayList<>();
-        checkoutProductDetails.add(firstItemDetails.getText());
-        checkoutProductDetails.add(secondItemDetails.getText());
-        checkoutProductDetails.add(thirdItemDetails.getText());
-        return checkoutProductDetails.toString();
+        List<String> inCartProductDetails = new ArrayList<>();
+        inCartProductDetails.add(firstItemDetails.getText());
+        inCartProductDetails.add(secondItemDetails.getText());
+        inCartProductDetails.add(thirdItemDetails.getText());
+        return inCartProductDetails.toString();
 
     }
 }
