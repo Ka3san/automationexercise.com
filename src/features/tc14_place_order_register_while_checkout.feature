@@ -14,7 +14,7 @@ Feature: Products Page & Cart Page
     And Verify ' Logged in as username' at top
     And Click 'Cart' button
     And Click 'Proceed To Checkout' button
-#    And Verify Address Details and Review Your Order
+    And Verify '<address details>' and Review Your Order
 #    And Enter description in comment text area and click 'Place Order'
 #    And Enter payment details: Name on Card, Card Number, CVC, Expiration date
 #    And Click 'Pay and Confirm Order' button
@@ -24,5 +24,5 @@ Feature: Products Page & Cart Page
 #    And Quit browser for better performance
 
     Examples:
-      | name   | email            | password | first name | last name | address           | country   | state   | city   | zipcode | mobile number |
-      | Stefan | Stefa2@gmail.com | Pass123  | Stefan     | Telefan   | 197 Sesame Street | Singapore | Montana | Berlin | 00-666  | 265340657     |
+      | name   | email            | password | first name | last name | address           | country   | state   | city   | zipcode | mobile number | address details                                                         |
+      | Stefan | Stefa2@gmail.com | Pass123  | Stefan     | Telefan   | 197 Sesame Street | Singapore | Montana | Berlin | 00-666  | 265340657     | 265340657 666 Berlin Montana Singapore 197 Sesame Street Telefan Stefan |

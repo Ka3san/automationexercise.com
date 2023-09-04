@@ -2,7 +2,6 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
-import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -15,8 +14,7 @@ import java.awt.*;
 import java.time.Duration;
 import java.util.Objects;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 
 public class RegisterUserSteps {
@@ -30,6 +28,7 @@ public class RegisterUserSteps {
     private ProductsPage productsPage;
     private ProductDetailsPage productDetailsPage;
     private CartPage cartPage;
+    private CheckoutPage checkoutPage;
 
     @AfterStep
     public void closeFrames() {
@@ -54,6 +53,7 @@ public class RegisterUserSteps {
         productsPage = new ProductsPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
         cartPage = new CartPage(driver);
+        checkoutPage = new CheckoutPage(driver);
 
     }
 
@@ -550,7 +550,7 @@ public class RegisterUserSteps {
         assertEquals(providedQuantity, quantityInCart);
     }
 
-    //      TEST CASE 13
+    //      TEST CASE 14
 
     @And("Add products to cart")
     public void addProductsToCart() {
@@ -598,6 +598,21 @@ public class RegisterUserSteps {
     @And("Click 'Proceed To Checkout' button")
     public void clickProceedToCheckoutButton() {
         cartPage.clickCheckoutButton();
+    }
+
+    @And("Verify {string} and Review Your Order")
+    public void verifyAddressAndReviewOrder(String addressDetails) {
+        // check if address delivery box on checkout page contains details from registration form
+        checkoutPage.checkDeliveryAddress();
+        String[] addressDeliveryArr = addressDetails.split(" ");
+        for (String details : addressDeliveryArr) {
+            assertTrue(checkoutPage.checkDeliveryAddress().contains(details));
+        }
+        checkoutPage.reviewOrder();
+        driver.navigate().back();
+        cartPage.checkItemsInCart();
+        assertEquals(cartPage.checkItemsInCart(), checkoutPage.reviewOrder());
+        driver.navigate().forward();
     }
 
 
