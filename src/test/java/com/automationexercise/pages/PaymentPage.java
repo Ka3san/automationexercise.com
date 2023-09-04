@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import org.junit.jupiter.api.Order;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -16,7 +17,8 @@ public class PaymentPage {
     private WebElement monthExpirationInputBox;
     @FindBy(css = "#payment-form > div:nth-child(4) > div:nth-child(3) > input")
     private WebElement yearExpirationInputBox;
-
+    @FindBy(id = "submit")
+    private WebElement payAndConfirmOrderButton;
 
 
     public PaymentPage(WebDriver driver) {
@@ -30,6 +32,10 @@ public class PaymentPage {
         String[] dateParts = expirationDate.split("/");
         monthExpirationInputBox.sendKeys(dateParts[0]);
         yearExpirationInputBox.sendKeys(dateParts[1]);
+    }
+
+    public void clickPayAndConfirmButton() {
+        payAndConfirmOrderButton.click();
     }
 
 }

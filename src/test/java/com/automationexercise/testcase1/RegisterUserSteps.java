@@ -2,6 +2,7 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
+import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -621,13 +622,34 @@ public class RegisterUserSteps {
     public void enterDescriptionInTextAreaAndPlaceOrder(String description) {
         checkoutPage.addCommentAndClickPlaceOrder(description);
     }
+
     @And("Enter payment details: {string}, {string}, {string}, {string}")
     public void enterPaymentDetails(String nameOnCard, String cardNumber, String cvc, String expirationDate) {
         paymentPage.fillInPaymentDetails(nameOnCard, cardNumber, cvc, expirationDate);
     }
 
+    @And("Click 'Pay and Confirm Order' button")
+    public void clickPayAndConfirmOrderButton() {
+        paymentPage.clickPayAndConfirmButton();
+    }
 
+    @Then("Verify success message 'Your order has been placed successfully!'")
+    public void verifySuccessMessage() {
+        driver.navigate().back();
+        String successMessage = driver.findElement(By.id("success_message")).getText();
+        assertEquals("Your order has been placed successfully!", successMessage);
+        driver.navigate().forward();
+    }
 
+    // ...
+
+    @And("Verify 'ACCOUNT DELETED!' and click 'Continue' button")
+    public void verifyAccountDeletedAndClickContinue() {
+        String accountDeletedAlert = driver.findElement(By.cssSelector("#form > div > div > div > h2 > b")).getText();
+        assertEquals("ACCOUNT DELETED!", accountDeletedAlert);
+        WebElement continueButton = driver.findElement(By.cssSelector("#form > div > div > div > div > a"));
+        continueButton.click();
+    }
 
 
     @And("Quit browser for better performance")

@@ -17,10 +17,10 @@ Feature: Products Page & Cart Page
     And Verify '<address details>' and Review Your Order
     And Enter '<description>' in comment text area and click 'Place Order'
     And Enter payment details: '<Name on Card>', '<Card Number>', '<CVC>', '<Expiration date>'
-#    And Click 'Pay and Confirm Order' button
-#    Then Verify success message 'Your order has been placed successfully!'
-#    And Click 'Delete Account' button
-#    And Verify 'ACCOUNT DELETED!' and click 'Continue' button
+    And Click 'Pay and Confirm Order' button
+    Then Verify success message 'Your order has been placed successfully!'
+    And Click 'Delete Account' button
+    And Verify 'ACCOUNT DELETED!' and click 'Continue' button
 #    And Quit browser for better performance
 
     Examples:

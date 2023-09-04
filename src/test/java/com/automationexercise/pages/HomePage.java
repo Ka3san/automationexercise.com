@@ -61,8 +61,10 @@ public class HomePage {
 
     public void clickDeleteAccount() {
         deleteAccountButton.click();
-        deleteAccountButton.click();
+//        deleteAccountButton.click();
+        // todo uncomment second click if necessary
     }
+
 
     public void clickLogout() {
         logoutButton.click();
