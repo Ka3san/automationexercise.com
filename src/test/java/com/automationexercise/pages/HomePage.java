@@ -62,7 +62,7 @@ public class HomePage {
     public void clickDeleteAccount() {
         deleteAccountButton.click();
 //        deleteAccountButton.click();
-        // todo uncomment second click if necessary
+        // TODO: uncomment second click if necessary
     }
 
 

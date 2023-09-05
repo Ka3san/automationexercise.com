@@ -45,4 +45,8 @@ public class CheckoutPage {
         placeOrderButton.click();
     }
 
+    public void clickPlaceOrder() {
+        placeOrderButton.click();
+    }
+
 }

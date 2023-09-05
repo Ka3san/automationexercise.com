@@ -625,7 +625,14 @@ public class RegisterUserSteps {
 
     @And("Enter payment details: {string}, {string}, {string}, {string}")
     public void enterPaymentDetails(String nameOnCard, String cardNumber, String cvc, String expirationDate) {
-        paymentPage.fillInPaymentDetails(nameOnCard, cardNumber, cvc, expirationDate);
+        String actualUrl = driver.getCurrentUrl();
+        System.out.println(actualUrl);
+        if (Objects.equals(actualUrl, "https://automationexercise.com/payment")) {
+            paymentPage.fillInPaymentDetails(nameOnCard, cardNumber, cvc, expirationDate);
+        } else {
+            checkoutPage.clickPlaceOrder();
+            paymentPage.fillInPaymentDetails(nameOnCard, cardNumber, cvc, expirationDate);
+        }
     }
 
     @And("Click 'Pay and Confirm Order' button")
@@ -651,7 +658,23 @@ public class RegisterUserSteps {
         continueButton.click();
     }
 
+    //      TEST CASE 16
 
+    @And("Fill {string}, {string} and click 'Login' button")
+    public void fillEmailPasswordAndClickLogin(String email, String password) {
+        loginPage.fillEmailAndPassword(userData.setEmail(email).setPassword(password));
+        loginPage.clickLoginButton();
+    }
+
+    @And("Verify ' Logged in as {string}' at top")
+    public void verifyLoggedAsUsername(String name) {
+        WebElement loggedAsUserText = driver.findElement(By.xpath("//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[10]/a"));
+        String textVisible = loggedAsUserText.getText();
+        assertEquals("Logged in as " + userData.setName(name).getName(), textVisible);
+    }
+
+
+    
     @And("Quit browser for better performance")
     public void quitBrowser() {
         driver.quit();
