@@ -25,6 +25,12 @@ public class CartPage {
     private WebElement secondItemDetails;
     @FindBy(id = "product-2")
     private WebElement thirdItemDetails;
+    @FindBy(xpath = "//*[@id=\"product-3\"]/td[6]/a")
+    private WebElement sleevelessDressDeleteButton;
+    @FindBy(xpath = "//*[@id=\"product-1\"]/td[6]/a")
+    private WebElement blueTopDeleteButton;
+    @FindBy(xpath = "//*[@id=\"product-2\"]/td[6]/a")
+    private WebElement menTshirtDeleteButton;
 
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -50,6 +56,17 @@ public class CartPage {
         inCartProductDetails.add(secondItemDetails.getText());
         inCartProductDetails.add(thirdItemDetails.getText());
         return inCartProductDetails.toString();
+    }
 
+    public void deleteSleevelessDress() {
+        sleevelessDressDeleteButton.click();
+    }
+
+    public void deleteBlueTop() {
+        blueTopDeleteButton.click();
+    }
+
+    public void deleteMenTshirt() {
+        menTshirtDeleteButton.click();
     }
 }

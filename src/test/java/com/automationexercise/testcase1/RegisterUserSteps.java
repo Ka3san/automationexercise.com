@@ -14,6 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.awt.*;
 import java.time.Duration;
 import java.util.Objects;
+import java.util.jar.JarOutputStream;
 
 import static org.junit.Assert.*;
 
@@ -626,7 +627,6 @@ public class RegisterUserSteps {
     @And("Enter payment details: {string}, {string}, {string}, {string}")
     public void enterPaymentDetails(String nameOnCard, String cardNumber, String cvc, String expirationDate) {
         String actualUrl = driver.getCurrentUrl();
-        System.out.println(actualUrl);
         if (Objects.equals(actualUrl, "https://automationexercise.com/payment")) {
             paymentPage.fillInPaymentDetails(nameOnCard, cardNumber, cvc, expirationDate);
         } else {
@@ -673,8 +673,40 @@ public class RegisterUserSteps {
         assertEquals("Logged in as " + userData.setName(name).getName(), textVisible);
     }
 
+    //      TEST CASE 17
+// TODO: 06/09/2023 parametrization to choose products to be add and to be delete from cart
 
-    
+    @Then("Click 'X' button corresponding to particular {string}")
+    public void clickXButtonToDeleteProduct(String product) {
+        if (Objects.equals(product, "Dress")) {
+            cartPage.deleteSleevelessDress();
+        } else if (Objects.equals(product, "Tshirt")) {
+            cartPage.deleteMenTshirt();
+        } else if (Objects.equals(product, "Top")) {
+            cartPage.deleteBlueTop();
+        }
+    }
+
+    @And("Verify that {string} is removed from the cart")
+    public void verifyProductWasDeleted(String product) {
+        try {
+            driver.findElement(By.id("product-3"));
+        } catch (Exception exception) {
+            System.out.println("Sleeveless Dress successful deleted");
+        }
+        try {
+            driver.findElement(By.id("product-1"));
+        } catch (Exception exception) {
+            System.out.println("Blue Top successful deleted");
+        }
+        try {
+            driver.findElement(By.id("product-2"));
+        } catch (Exception exception) {
+            System.out.println("Men Tshirt successful deleted");
+        }
+    }
+
+
     @And("Quit browser for better performance")
     public void quitBrowser() {
         driver.quit();
