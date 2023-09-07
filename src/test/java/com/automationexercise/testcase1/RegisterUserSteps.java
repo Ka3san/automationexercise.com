@@ -706,6 +706,34 @@ public class RegisterUserSteps {
         }
     }
 
+    //      TEST CASE 18
+
+    @When("Verify that categories are visible on left side bar")
+    public void checkCategoriesAreVisible() {
+        assertTrue(homePage.checkCategoriesVisibility());
+    }
+
+    @And("Click on 'Women' category")
+    public void clickOnWomanCategory() {
+        homePage.clickWomanCategory();
+    }
+
+    @And("Click on {string} link under 'Women' category")
+    public void clickOnAnyLinkUnderWomanCategory(String category) {
+        if (Objects.equals(category, "Dress")) {
+            homePage.clickDressCategory();
+        } else if (Objects.equals(category, "Tops")) {
+            homePage.clickTopsCategory();
+        } else if (Objects.equals(category, "Saree")) {
+            homePage.clickSareeCategory();
+        }
+    }
+
+    @And("Verify that category page is displayed and confirm text 'WOMEN - TOPS PRODUCTS'")
+    public void verify() {
+
+    }
+
 
     @And("Quit browser for better performance")
     public void quitBrowser() {

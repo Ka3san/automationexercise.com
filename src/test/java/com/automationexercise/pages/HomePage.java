@@ -37,6 +37,16 @@ public class HomePage {
     private WebElement blueTopAddToCartButton;
     @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div/div[3]/div/div[1]/div[1]/a")
     private WebElement menTShirtAddToCartButton;
+    @FindBy(css = "div.left-sidebar")
+    private WebElement categoryLeftSidebar;
+    @FindBy(xpath = "//*[@id=\"accordian\"]/div[1]/div[1]/h4/a")
+    private WebElement womenCategoryLink;
+    @FindBy(xpath = "//*[@id=\"Women\"]/div/ul/li[1]/a")
+    private WebElement womanCategoryDressLink;
+    @FindBy(xpath = "//*[@id=\"Women\"]/div/ul/li[2]/a")
+    private WebElement womanCategoryTopsLink;
+    @FindBy(xpath = "//*[@id=\"Women\"]/div/ul/li[3]/a")
+    private WebElement womanCategorySareeLink;
 
 // TODO:
 //    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[9]/div/div[1]/div[2]/div/a")
@@ -107,5 +117,27 @@ public class HomePage {
         continueShoppingButton.click();
     }
 
+    public boolean checkCategoriesVisibility() {
+        return categoryLeftSidebar.isDisplayed();
+    }
+
+    public void clickWomanCategory() {
+        womenCategoryLink.click();
+    }
+
+    public void clickDressCategory() {
+        womanCategoryDressLink.click();
+        womanCategoryDressLink.click();
+    }
+
+    public void clickTopsCategory() {
+        womanCategoryTopsLink.click();
+        womanCategoryTopsLink.click();
+    }
+
+    public void clickSareeCategory() {
+        womanCategorySareeLink.click();
+        womanCategorySareeLink.click();
+    }
 }
 
