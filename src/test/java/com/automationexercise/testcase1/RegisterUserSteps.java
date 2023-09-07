@@ -730,8 +730,13 @@ public class RegisterUserSteps {
     }
 
     @And("Verify that category page is displayed and confirm text 'WOMEN - TOPS PRODUCTS'")
-    public void verify() {
-
+    public void verifyCategoryPageAndText() {
+        String womenProductsCategoryText = driver.findElement(By.cssSelector("h2.title.text-center")).getText();
+        assertTrue(womenProductsCategoryText.contains("PRODUCTS"));
+        if (womenProductsCategoryText.equals("WOMEN - TOPS PRODUCTS")) {
+            System.out.println("WOMEN - TOPS PRODUCTS visible");
+        } else
+            System.out.println("WOMEN - TOPS PRODUCTS not visible, You chose Dress or Saree category");
     }
 
 

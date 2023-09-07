@@ -1,6 +1,6 @@
-Feature: Products Page & Cart Page
+Feature: Products Category
 
-  Scenario Outline: Remove products from cart
+  Scenario Outline: View category products
     Given Launch browser
     And Navigate to url http://automationexercise.com
     When Verify that categories are visible on left side bar
