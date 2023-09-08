@@ -42,11 +42,17 @@ public class HomePage {
     @FindBy(xpath = "//*[@id=\"accordian\"]/div[1]/div[1]/h4/a")
     private WebElement womenCategoryLink;
     @FindBy(xpath = "//*[@id=\"Women\"]/div/ul/li[1]/a")
-    private WebElement womanCategoryDressLink;
+    private WebElement womenCategoryDressLink;
     @FindBy(xpath = "//*[@id=\"Women\"]/div/ul/li[2]/a")
-    private WebElement womanCategoryTopsLink;
+    private WebElement womenCategoryTopsLink;
     @FindBy(xpath = "//*[@id=\"Women\"]/div/ul/li[3]/a")
-    private WebElement womanCategorySareeLink;
+    private WebElement womenCategorySareeLink;
+    @FindBy(xpath = "//*[@id=\"accordian\"]/div[2]/div[1]/h4/a")
+    private WebElement menCategoryLink;
+    @FindBy(xpath = "//*[@id=\"Men\"]/div/ul/li[1]/a")
+    private WebElement menCategoryTshirtsLink;
+    @FindBy(xpath = "//*[@id=\"Men\"]/div/ul/li[2]/a")
+    private WebElement menCategoryJeansLink;
 
 // TODO:
 //    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[9]/div/div[1]/div[2]/div/a")
@@ -121,23 +127,35 @@ public class HomePage {
         return categoryLeftSidebar.isDisplayed();
     }
 
-    public void clickWomanCategory() {
+    public void clickWomenCategory() {
         womenCategoryLink.click();
     }
 
     public void clickDressCategory() {
-        womanCategoryDressLink.click();
-        womanCategoryDressLink.click();
+        womenCategoryDressLink.click();
+        womenCategoryDressLink.click();
     }
 
     public void clickTopsCategory() {
-        womanCategoryTopsLink.click();
-        womanCategoryTopsLink.click();
+        womenCategoryTopsLink.click();
+        womenCategoryTopsLink.click();
     }
 
     public void clickSareeCategory() {
-        womanCategorySareeLink.click();
-        womanCategorySareeLink.click();
+        womenCategorySareeLink.click();
+        womenCategorySareeLink.click();
+    }
+
+    public void clickMenCategory() {
+        menCategoryLink.click();
+    }
+
+    public void clickTshirtsCategory() {
+        menCategoryTshirtsLink.click();
+    }
+
+    public void clickJeansCstegory() {
+        menCategoryJeansLink.click();
     }
 }
 

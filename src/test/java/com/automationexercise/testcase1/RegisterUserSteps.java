@@ -2,7 +2,6 @@ package com.automationexercise.testcase1;
 
 import com.automationexercise.UserData;
 import com.automationexercise.pages.*;
-import com.google.common.base.Verify;
 import io.cucumber.java.AfterStep;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -14,7 +13,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.awt.*;
 import java.time.Duration;
 import java.util.Objects;
-import java.util.jar.JarOutputStream;
 
 import static org.junit.Assert.*;
 
@@ -714,17 +712,17 @@ public class RegisterUserSteps {
     }
 
     @And("Click on 'Women' category")
-    public void clickOnWomanCategory() {
-        homePage.clickWomanCategory();
+    public void clickOnWomenCategory() {
+        homePage.clickWomenCategory();
     }
 
     @And("Click on {string} link under 'Women' category")
-    public void clickOnAnyLinkUnderWomanCategory(String category) {
-        if (Objects.equals(category, "Dress")) {
+    public void clickOnAnyLinkUnderWomanCategory(String womenCategory) {
+        if (Objects.equals(womenCategory, "Dress")) {
             homePage.clickDressCategory();
-        } else if (Objects.equals(category, "Tops")) {
+        } else if (Objects.equals(womenCategory, "Tops")) {
             homePage.clickTopsCategory();
-        } else if (Objects.equals(category, "Saree")) {
+        } else if (Objects.equals(womenCategory, "Saree")) {
             homePage.clickSareeCategory();
         }
     }
@@ -737,6 +735,31 @@ public class RegisterUserSteps {
             System.out.println("WOMEN - TOPS PRODUCTS visible");
         } else
             System.out.println("WOMEN - TOPS PRODUCTS not visible, You chose Dress or Saree category");
+    }
+
+    // alternative version with log info about text with chosen category
+
+//    @And("Verify that category page is displayed and confirm text 'WOMEN - {string} PRODUCTS'")
+//    public void verifyCategoryPageAndText(String womanCategory) {
+//        String womenProductsCategoryText = driver.findElement(By.cssSelector("h2.title.text-center")).getText();
+//        assertTrue(womenProductsCategoryText.contains("PRODUCTS"));
+//            System.out.println("WOMEN - " + womanCategory.toUpperCase() + " PRODUCTS visible");
+//    }
+
+    @Then("On left side bar, click on {string} sub-category link of 'Men' category")
+    public void clickOnAnyLinkUnderManCategory(String menCategory) {
+        homePage.clickMenCategory();
+        if (Objects.equals(menCategory, "Tshirts")) {
+            homePage.clickTshirtsCategory();
+        } else if (Objects.equals(menCategory, "Jeans")) {
+            homePage.clickJeansCstegory();
+        }
+    }
+
+    @And("Verify that user is navigated to that {string} page")
+    public void verifyCorrectCategoryPageNavigation(String menCategory) {
+        String menCategoryPageText = driver.findElement(By.cssSelector("h2.title.text-center")).getText();
+        assertTrue(menCategoryPageText.contains(menCategory.toUpperCase()));
     }
 
 
