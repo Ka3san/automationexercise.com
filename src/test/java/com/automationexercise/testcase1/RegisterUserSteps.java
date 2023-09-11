@@ -762,13 +762,54 @@ public class RegisterUserSteps {
         assertTrue(menCategoryPageText.contains(menCategory.toUpperCase()));
     }
 
+    //      TEST CASE 19
+
+    @And("Verify that Brands are visible on left side bar")
+    public void verifyThatBrandsAreVisibleOnLeftSideBar() {
+        assertTrue(productsPage.checkBrandsSidebarVisibility());
+    }
+
+    @And("Click on {string}")
+    public void clickOnBrandName(String brandName) {
+        if (Objects.equals(brandName, "Polo")) {
+            productsPage.clickPoloBrand();
+        } else if (Objects.equals(brandName, "H&M")) {
+            productsPage.clickHmBrand();
+        } else if (Objects.equals(brandName, "Madame")) {
+            productsPage.clickMadameBrand();
+        } else if (Objects.equals(brandName, "Mast & Harbour")) {
+            productsPage.clickMastHarbourBrand();
+        } else if (Objects.equals(brandName, "Babyhug")) {
+            productsPage.clickBabyhugBrand();
+        } else if (Objects.equals(brandName, "Allen Solly Jr.")) {
+            productsPage.clickAllenSollyJuniorBrand();
+        } else if (Objects.equals(brandName, "Kookie Kids")) {
+            productsPage.clickKookieKidsBrand();
+        } else if (Objects.equals(brandName, "Biba")) {
+            productsPage.clickBibaBrand();
+        }
+    }
+
+    @And("Verify that user is navigated to brand page and brand products are displayed")
+    public void verifyThatUserIsNavigatedToBrandPageAndBrandProductsAreDisplayed() {
+
+    }
+
+    @Then("On left side bar, click on any other brand link")
+    public void onLeftSideBarClickOnAnyOtherBrandLink() {
+
+    }
+
+    @And("Verify that user is navigated to that brand page and can see products")
+    public void verifyThatUserIsNavigatedToThatBrandPageAndCanSeeProducts() {
+
+    }
+
 
     @And("Quit browser for better performance")
     public void quitBrowser() {
         driver.quit();
     }
-
-
 }
 
 
