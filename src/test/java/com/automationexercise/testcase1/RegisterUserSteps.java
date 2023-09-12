@@ -771,6 +771,7 @@ public class RegisterUserSteps {
 
     @And("Click on {string}")
     public void clickOnBrandName(String brandName) {
+        productsPage.setBrandName(brandName);
         if (Objects.equals(brandName, "Polo")) {
             productsPage.clickPoloBrand();
         } else if (Objects.equals(brandName, "H&M")) {
@@ -781,7 +782,7 @@ public class RegisterUserSteps {
             productsPage.clickMastHarbourBrand();
         } else if (Objects.equals(brandName, "Babyhug")) {
             productsPage.clickBabyhugBrand();
-        } else if (Objects.equals(brandName, "Allen Solly Jr.")) {
+        } else if (Objects.equals(brandName, "Allen Solly Junior")) {
             productsPage.clickAllenSollyJuniorBrand();
         } else if (Objects.equals(brandName, "Kookie Kids")) {
             productsPage.clickKookieKidsBrand();
@@ -790,19 +791,61 @@ public class RegisterUserSteps {
         }
     }
 
-    @And("Verify that user is navigated to brand page and brand products are displayed")
-    public void verifyThatUserIsNavigatedToBrandPageAndBrandProductsAreDisplayed() {
-
+    @And("Verify that user is navigated to {string} page and brand products are displayed")
+    public void verifyThatUserIsNavigatedToBrandPageAndBrandProductsAreDisplayed(String brandName) {
+        productsPage.setBrandName(brandName);
+        String brandProductsText = driver.findElement(By.cssSelector("h2.title.text-center")).getText();
+        assertTrue(brandProductsText.contains(brandName.toUpperCase()));
+        assertTrue(driver.findElement(By.cssSelector("div.col-sm-4")).isDisplayed());
     }
 
-    @Then("On left side bar, click on any other brand link")
-    public void onLeftSideBarClickOnAnyOtherBrandLink() {
-
+    /* other brands links selectors are different on every brand page (sic!) so I decided to click a brand link
+    placed in the left side bar next to provided by feature file examples. apart from "Biba" brand clicking "Polo" link */
+    @Then("On left side bar, click on any other {string} link")
+    public void onLeftSideBarClickOnAnyOtherBrandLink(String brandName) {
+        productsPage.setBrandName(brandName);
+        if (Objects.equals(brandName, "Polo")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div[1]/div[2]/div/ul/li[2]/a")).click();
+        } else if (Objects.equals(brandName, "H&M")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[2]/div/ul/li[3]/a")).click();
+        } else if (Objects.equals(brandName, "Madame")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[2]/div/ul/li[4]/a")).click();
+        } else if (Objects.equals(brandName, "Mast & Harbour")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[2]/div/ul/li[5]/a")).click();
+        } else if (Objects.equals(brandName, "Babyhug")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[2]/div/ul/li[6]/a")).click();
+        } else if (Objects.equals(brandName, "Allen Solly Junior")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[2]/div/ul/li[7]/a")).click();
+        } else if (Objects.equals(brandName, "Kookie Kids")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div/div[2]/div/ul/li[8]/a")).click();
+        } else if (Objects.equals(brandName, "Biba")) {
+            driver.findElement(By.xpath("/html/body/section/div/div[2]/div[1]/div[1]/div[2]/div/ul/li[1]/a")).click();
+        }
     }
 
+    // check if page title contains brand name placed in left side bar next to provided by feature file
     @And("Verify that user is navigated to that brand page and can see products")
     public void verifyThatUserIsNavigatedToThatBrandPageAndCanSeeProducts() {
-
+        String brandName = productsPage.getBrandName();
+        String title = driver.getTitle();
+        if (Objects.equals(brandName, "Polo")) {
+            assertTrue(title.contains("H&M"));
+        } else if (Objects.equals(brandName, "H&M")) {
+            assertTrue(title.contains("Madame"));
+        } else if (Objects.equals(brandName, "Madame")) {
+            assertTrue(title.contains("Mast & Harbour"));
+        } else if (Objects.equals(brandName, "Mast & Harbour")) {
+            assertTrue(title.contains("Babyhug"));
+        } else if (Objects.equals(brandName, "Babyhug")) {
+            assertTrue(title.contains("Allen Solly Junior"));
+        } else if (Objects.equals(brandName, "Allen Solly Junior")) {
+            assertTrue(title.contains("Kookie Kids"));
+        } else if (Objects.equals(brandName, "Kookie Kids")) {
+            assertTrue(title.contains("Biba"));
+        } else if (Objects.equals(brandName, "Biba")) {
+            assertTrue(title.contains("Polo"));
+        }
+        assertTrue(driver.findElement(By.cssSelector("div.col-sm-4")).isDisplayed());
     }
 
 
