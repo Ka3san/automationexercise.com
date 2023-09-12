@@ -1,6 +1,6 @@
 Feature: Products Page & Cart Page
 
-  Scenario Outline: Add Products in Cart
+  Scenario: Add Products in Cart
     Given Launch browser
     And Navigate to url http://automationexercise.com
     When Verify that home page is visible successfully
@@ -13,6 +13,4 @@ Feature: Products Page & Cart Page
     And Verify their prices, quantity and total price
 #    And Quit browser for better performance
 
-    Examples:
-      | product name |
-      | Top          |
+
