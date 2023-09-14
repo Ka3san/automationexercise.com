@@ -32,6 +32,7 @@ public class CartPage {
     @FindBy(xpath = "//*[@id=\"product-2\"]/td[6]/a")
     private WebElement menTshirtDeleteButton;
 
+
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
     }
@@ -69,4 +70,6 @@ public class CartPage {
     public void deleteMenTshirt() {
         menTshirtDeleteButton.click();
     }
+
+
 }

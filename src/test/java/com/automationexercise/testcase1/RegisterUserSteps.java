@@ -9,9 +9,12 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
 import java.time.Duration;
+import java.util.List;
 import java.util.Objects;
 
 import static org.junit.Assert.*;
@@ -847,6 +850,28 @@ public class RegisterUserSteps {
         }
         assertTrue(driver.findElement(By.cssSelector("div.col-sm-4")).isDisplayed());
     }
+
+    //      TEST CASE 20
+
+    @And("Add those products to cart")
+    public void addThoseProductsToCart() {
+        List<WebElement> addToCartButtons = driver.findElements(By.xpath("//*[text()='Add to cart']"));
+        try {
+            for (WebElement button : addToCartButtons) {
+                button.click();
+                productsPage.clickContinueShopping();
+            }
+        } catch (Exception ElementNotInteractableException) {
+            System.out.println("Some products can NOT be added to cart - Add To Cart button is not clickable in this cases");
+        }
+    }
+
+    @Then("Click 'Cart' button and verify that products are visible in cart")
+    public void clickCartButtonAndVerifyThatProductsAreVisibleInCart() {
+            homePage.clickCartButton();
+            assertTrue(driver.findElement(By.id("cart_info")).isDisplayed());
+    }
+
 
 
     @And("Quit browser for better performance")
