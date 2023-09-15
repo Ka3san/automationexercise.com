@@ -13,6 +13,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
@@ -47,7 +51,7 @@ public class RegisterUserSteps {
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         userData = new UserData(driver);
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
@@ -868,12 +872,31 @@ public class RegisterUserSteps {
 
     @Then("Click 'Cart' button and verify that products are visible in cart")
     public void clickCartButtonAndVerifyThatProductsAreVisibleInCart() {
-            homePage.clickCartButton();
-            assertTrue(driver.findElement(By.id("cart_info")).isDisplayed());
+        homePage.clickCartButton();
+        assertTrue(driver.findElement(By.id("cart_info")).isDisplayed());
+        cartPage.checkProductsInCartBeforeLogin();
+    }
+
+    @And("Click Signup | Login button and submit login details: {string} and {string}")
+    public void clickSignupLoginButtonAndSubmitLoginDetailsEmailPassword(String email, String password) {
+        cartPage.clickSignupLogin();
+        loginPage.fillEmailAndPassword(userData.setEmail(email).setPassword(password));
+        loginPage.clickLoginButton();
+    }
+
+    @And("Again, go to Cart page")
+    public void againGoToCartPage() {
+        homePage.clickCartButton();
+    }
+
+    @And("Verify that those products are visible in cart after login as well")
+    public void verifyThatThoseProductsAreVisibleInCartAfterLoginAsWell() {
+        cartPage.checkProductsInCartAfterLogin();
+        assertEquals(cartPage.checkProductsInCartBeforeLogin(), cartPage.checkProductsInCartAfterLogin());
     }
 
 
-
+    
     @And("Quit browser for better performance")
     public void quitBrowser() {
         driver.quit();

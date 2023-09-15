@@ -31,7 +31,10 @@ public class CartPage {
     private WebElement blueTopDeleteButton;
     @FindBy(xpath = "//*[@id=\"product-2\"]/td[6]/a")
     private WebElement menTshirtDeleteButton;
-
+    @FindBy(xpath = "//*[@id=\"header\"]/div/div/div/div[2]/div/ul/li[4]/a")
+    private WebElement signupLoginButton;
+    @FindBy(id = "cart_info")
+    private WebElement productsInCartTable;
 
     public CartPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -71,5 +74,14 @@ public class CartPage {
         menTshirtDeleteButton.click();
     }
 
+    public void clickSignupLogin() {
+        signupLoginButton.click();
+    }
 
-}
+    public String checkProductsInCartBeforeLogin() {
+        return String.valueOf(productsInCartTable.getSize());
+    }
+        public String checkProductsInCartAfterLogin() {
+            return String.valueOf(productsInCartTable.getSize());
+        }
+    }
