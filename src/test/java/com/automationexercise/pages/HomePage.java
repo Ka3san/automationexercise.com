@@ -53,6 +53,10 @@ public class HomePage {
     private WebElement menCategoryTshirtsLink;
     @FindBy(xpath = "//*[@id=\"Men\"]/div/ul/li[2]/a")
     private WebElement menCategoryJeansLink;
+    @FindBy(xpath = "//*[@id=\"recommended-item-carousel\"]/div/div[2]/div[2]/div/div/div/a")
+    private WebElement middleRecommendedItemAddToCartButton;
+    @FindBy(xpath = "//*[@id=\"cartModal\"]/div/div/div[2]/p[2]/a/u")
+    private WebElement viewCartButton;
 
 // TODO:
 //    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[9]/div/div[1]/div[2]/div/a")
@@ -157,5 +161,14 @@ public class HomePage {
     public void clickJeansCstegory() {
         menCategoryJeansLink.click();
     }
+
+    public void clickAddToCartOnRecommendedProduct() {
+        middleRecommendedItemAddToCartButton.click();
+    }
+
+    public void clickViewCartButton() {
+        viewCartButton.click();
+    }
 }
+
 

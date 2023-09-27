@@ -9,14 +9,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.awt.*;
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
@@ -918,6 +912,33 @@ public class RegisterUserSteps {
     @And("Verify success message Thank you for your review.")
     public void verifySuccessMessageThankYouForYourReview() {
         assertTrue(driver.findElement(By.xpath("//*[@id=\"review-section\"]/div/div/span")).isDisplayed());
+    }
+
+    //      TEST CASE 22
+    @When("Scroll to bottom of page")
+    public void scrollToBottomOfPage() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+    }
+
+    @And("Verify RECOMMENDED ITEMS are visible")
+    public void verifyRECOMMENDEDITEMSAreVisible() {
+        assertTrue(driver.findElement(By.cssSelector("div.recommended_items")).isDisplayed());
+    }
+
+    @And("Click on Add To Cart on Recommended product")
+    public void clickOnAddToCartOnRecommendedProduct() {
+        homePage.clickAddToCartOnRecommendedProduct();
+    }
+
+    @Then("Click on View Cart button")
+    public void clickOnViewCartButton() {
+        homePage.clickViewCartButton();
+    }
+
+    @And("Verify that product is displayed in cart page")
+    public void verifyThatProductIsDisplayedInCartPage() {
+        assertTrue(driver.findElement(By.id("cart_info_table")).isDisplayed());
     }
 
 
