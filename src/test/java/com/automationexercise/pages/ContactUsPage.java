@@ -41,7 +41,6 @@ public class ContactUsPage {
     }
 
     public void clickOk() {
-        System.out.println("click ;)");
     }
 
     public void clickHome() {

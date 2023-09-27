@@ -260,8 +260,12 @@ public class RegisterUserSteps {
 
     @And("Click 'Submit' button")
     public void submit() {
-        contactUsPage.clickSubmit();
-        driver.switchTo().alert().accept();
+        if (Objects.equals(driver.getTitle(), "Automation Exercise - Contact Us")) {
+            contactUsPage.clickSubmit();
+            driver.switchTo().alert().accept();
+        } else if (Objects.equals(driver.getTitle(), "Automation Exercise - Product Details")) {
+            productDetailsPage.submitReview();
+        }
     }
 
     @And("Click OK button")
@@ -904,6 +908,16 @@ public class RegisterUserSteps {
     @And("Verify Write Your Review is visible")
     public void verifyWriteYourReviewIsVisible() {
         assertEquals("WRITE YOUR REVIEW", driver.findElement(By.cssSelector("li.active")).getText());
+    }
+
+    @Then("Enter {string}, {string} and {string}")
+    public void enterNameEmailAndReview(String name, String email, String review) {
+        productDetailsPage.fillReviewForm(name, email, review);
+    }
+
+    @And("Verify success message Thank you for your review.")
+    public void verifySuccessMessageThankYouForYourReview() {
+        assertTrue(driver.findElement(By.xpath("//*[@id=\"review-section\"]/div/div/span")).isDisplayed());
     }
 
 

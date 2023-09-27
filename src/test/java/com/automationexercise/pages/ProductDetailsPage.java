@@ -24,6 +24,12 @@ public class ProductDetailsPage {
     private WebElement productQuantityInputBox;
     @FindBy(css = "button.btn.btn-default.cart")
     private WebElement addToCartButton;
+    @FindBy(id = "name")
+    private WebElement reviewNameInputBox;
+    @FindBy(id = "email")
+    private WebElement reviewEmailInputBox;
+    @FindBy(id = "review")
+    private WebElement reviewInputBox;
 
     public ProductDetailsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -45,6 +51,16 @@ public class ProductDetailsPage {
 
     public void clickAddToCartButton() {
         addToCartButton.click();
+    }
+
+    public void fillReviewForm(String name, String email, String review) {
+        reviewNameInputBox.sendKeys(name);
+        reviewEmailInputBox.sendKeys(email);
+        reviewInputBox.sendKeys(review);
+    }
+
+    public void submitReview() {
+        reviewInputBox.submit();
     }
 
 }

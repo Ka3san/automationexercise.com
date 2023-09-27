@@ -7,13 +7,12 @@ Feature: Products Category
     And Verify user is navigated to ALL PRODUCTS page successfully
     And Click on View Product button
     And Verify Write Your Review is visible
-#    Then Enter '<name>', '<email>' and '<review>'
-#    And Click 'Submit' button
-#    And Verify success message 'Thank you for your review.'
-
+    Then Enter '<name>', '<email>' and '<review>'
+    And Click 'Submit' button
+    And Verify success message Thank you for your review.
 #    And Quit browser for better performance
 
     Examples:
-      | name  | email            | review  |
-      | Jeans | Stefa2@gmail.com | Pass123 |
+      | name   | email             | review       |
+      | Albert | al.bert@gmail.com | good shit ;) |
 
