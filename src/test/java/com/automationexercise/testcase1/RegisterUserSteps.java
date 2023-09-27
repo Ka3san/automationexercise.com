@@ -891,16 +891,26 @@ public class RegisterUserSteps {
 
     @And("Verify that those products are visible in cart after login as well")
     public void verifyThatThoseProductsAreVisibleInCartAfterLoginAsWell() {
-        cartPage.checkProductsInCartAfterLogin();
         assertEquals(cartPage.checkProductsInCartBeforeLogin(), cartPage.checkProductsInCartAfterLogin());
     }
 
+    //      TEST CASE 21
 
-    
-    @And("Quit browser for better performance")
-    public void quitBrowser() {
-        driver.quit();
+    @And("Click on View Product button")
+    public void clickOnViewProductButton() {
+        productsPage.clickViewFirstProduct();
     }
+
+    @And("Verify Write Your Review is visible")
+    public void verifyWriteYourReviewIsVisible() {
+        assertEquals("WRITE YOUR REVIEW", driver.findElement(By.cssSelector("li.active")).getText());
+    }
+
+
+//    @And("Quit browser for better performance")
+//    public void quitBrowser() {
+//        driver.quit();
+//    }
 }
 
 
