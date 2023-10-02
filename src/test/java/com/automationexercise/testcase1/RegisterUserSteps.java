@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.awt.*;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -915,6 +916,7 @@ public class RegisterUserSteps {
     }
 
     //      TEST CASE 22
+
     @When("Scroll to bottom of page")
     public void scrollToBottomOfPage() {
         JavascriptExecutor js = (JavascriptExecutor) driver;
@@ -939,6 +941,26 @@ public class RegisterUserSteps {
     @And("Verify that product is displayed in cart page")
     public void verifyThatProductIsDisplayedInCartPage() {
         assertTrue(driver.findElement(By.id("cart_info_table")).isDisplayed());
+    }
+
+    //      TEST CASE 23
+
+    @And("Verify that the delivery address is same address filled at the time registration of account")
+    public void verifyDeliveryAddressIsSameAddressAsFilledDuringRegistration() {
+        String registrationData = userData.getFirstName() + " " + userData.getLastName() + " " + userData.getAddress() + " " + userData.getCity() + " " + userData.getState() + " " + userData.getZipCode() + " " + userData.getCountry() + " " + userData.getMobileNumber();
+        String[] addressDeliveryArr = registrationData.split(" ");
+        for (String registeredAddress : addressDeliveryArr) {
+            assertTrue(checkoutPage.checkDeliveryAddress().contains(registeredAddress));
+        }
+    }
+
+    @And("Verify that the billing address is same address filled at the time registration of account")
+    public void verifyThatTheBillingAddressIsSameAddressFilledAtTheTimeRegistrationOfAccount() {
+        String registrationData = userData.getFirstName() + " " + userData.getLastName() + " " + userData.getAddress() + " " + userData.getCity() + " " + userData.getState() + " " + userData.getZipCode() + " " + userData.getCountry() + " " + userData.getMobileNumber();
+        String[] billingAddressArr = registrationData.split(" ");
+        for (String registeredAddress : billingAddressArr) {
+            assertTrue(checkoutPage.checkBillingAddress().contains(registeredAddress));
+        }
     }
 
 

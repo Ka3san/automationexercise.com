@@ -1,5 +1,6 @@
 package com.automationexercise.pages;
 
+import io.cucumber.java.be.I;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,6 +22,8 @@ public class CheckoutPage {
     private WebElement commentTextArea;
     @FindBy(css = "a.btn.btn-default.check_out")
     private WebElement placeOrderButton;
+    @FindBy(id = "address_invoice")
+    private WebElement billingAddressBox;
 
 
     public CheckoutPage(WebDriver driver) {
@@ -49,4 +52,7 @@ public class CheckoutPage {
         placeOrderButton.click();
     }
 
+    public String checkBillingAddress() {
+        return billingAddressBox.getText();
+    }
 }
