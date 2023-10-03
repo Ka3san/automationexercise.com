@@ -11,8 +11,8 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.awt.*;
+import java.io.File;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -961,6 +961,25 @@ public class RegisterUserSteps {
         for (String registeredAddress : billingAddressArr) {
             assertTrue(checkoutPage.checkBillingAddress().contains(registeredAddress));
         }
+    }
+
+    @Then("Click 'Download Invoice' button and verify invoice is downloaded successfully")
+    public void clickDownloadInvoiceButtonAndVerifyInvoiceIsDownloadedSuccessfully() throws InterruptedException {
+        WebElement downloadInvoiceButton = driver.findElement(By.cssSelector("a.btn.btn-default.check_out"));
+        downloadInvoiceButton.click();
+        Thread.sleep(Duration.ofSeconds(3));
+            File invoice = new File("/Users/ka3/Downloads/invoice.txt");
+        if (invoice.exists()) {
+                System.out.println("Invoice successfully downloaded");
+            } else {
+                System.out.println("Download failed");
+            }
+        invoice.delete();
+    }
+
+    @And("Click Continue button")
+    public void clickContinue() {
+        driver.findElement(By.cssSelector("a.btn.btn-primary")).click();
     }
 
 
