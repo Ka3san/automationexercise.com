@@ -1018,6 +1018,14 @@ public class RegisterUserSteps {
         assertTrue(text.contains("Full-Fledged practice website for Automation Engineers"));
     }
 
+    //      TEST CASE 26
+
+    @Then("Scroll up page to top")
+    public void scrollUpPageToTop() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollTo(0,0)");
+    }
+
 
 //    @And("Quit browser for better performance")
 //    public void quitBrowser() {
