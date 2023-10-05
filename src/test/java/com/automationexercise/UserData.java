@@ -42,7 +42,7 @@ public class UserData {
     // TODO: enable or disable random email
     public UserData setEmail(String email) {
 //        this.email = email;
-        this.email = UUID.randomUUID().toString() + "@gmail.com";
+        this.email = UUID.randomUUID() + "@gmail.com";
         return this;
     }
 

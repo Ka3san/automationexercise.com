@@ -39,6 +39,7 @@ public class ProductsPage {
     private WebElement kookieKidsBrandLink;
     @FindBy(xpath = "/html/body/section[2]/div/div/div[1]/div[1]/div[3]/div/ul/li[8]/a")
     private WebElement bibaBrandLink;
+    private String brandName;
 
     public ProductsPage(WebDriver driver) {
         PageFactory.initElements(driver, this);
@@ -104,8 +105,6 @@ public class ProductsPage {
     public void clickBibaBrand() {
         bibaBrandLink.click();
     }
-
-    private String brandName;
 
     public String getBrandName() {
         return brandName;

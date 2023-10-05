@@ -13,5 +13,5 @@ Feature: Products Page & Cart Page
 
     Examples:
       | product |
-      | Tshirt     |
+      | Tshirt  |
     # type product to delete: "Dress", "Tshirt" or "Top" (for now :))

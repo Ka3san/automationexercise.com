@@ -81,7 +81,8 @@ public class CartPage {
     public String checkProductsInCartBeforeLogin() {
         return String.valueOf(productsInCartTable.getSize());
     }
-        public String checkProductsInCartAfterLogin() {
-            return String.valueOf(productsInCartTable.getSize());
-        }
+
+    public String checkProductsInCartAfterLogin() {
+        return String.valueOf(productsInCartTable.getSize());
     }
+}
