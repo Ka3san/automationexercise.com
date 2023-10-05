@@ -7,7 +7,10 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.awt.*;
@@ -16,7 +19,8 @@ import java.time.Duration;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class RegisterUserSteps {
@@ -46,7 +50,7 @@ public class RegisterUserSteps {
 
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         userData = new UserData(driver);
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
@@ -963,23 +967,55 @@ public class RegisterUserSteps {
         }
     }
 
+    //      TEST CASE 24
+
     @Then("Click 'Download Invoice' button and verify invoice is downloaded successfully")
     public void clickDownloadInvoiceButtonAndVerifyInvoiceIsDownloadedSuccessfully() throws InterruptedException {
         WebElement downloadInvoiceButton = driver.findElement(By.cssSelector("a.btn.btn-default.check_out"));
         downloadInvoiceButton.click();
         Thread.sleep(Duration.ofSeconds(3));
-            File invoice = new File("/Users/ka3/Downloads/invoice.txt");
+        File invoice = new File("/Users/ka3/Downloads/invoice.txt");
         if (invoice.exists()) {
-                System.out.println("Invoice successfully downloaded");
-            } else {
-                System.out.println("Download failed");
-            }
+            System.out.println("Invoice successfully downloaded");
+        } else {
+            System.out.println("Download failed");
+        }
         invoice.delete();
     }
 
     @And("Click Continue button")
     public void clickContinue() {
         driver.findElement(By.cssSelector("a.btn.btn-primary")).click();
+    }
+
+    //      TEST CASE 25
+
+    @And("Scroll down page to bottom")
+    public void scrollDownPageToBottom() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,document.body.scrollHeight)");
+    }
+
+    @And("Verify 'SUBSCRIPTION' is visible")
+    public void verifySUBSCRIPTIONIsVisible() {
+        WebElement subscriptionText = driver.findElement(By.xpath("//*[@id=\"footer\"]/div[1]/div/div/div[2]/div/h2"));
+        assertTrue(subscriptionText.isDisplayed());
+    }
+
+    @Then("Click on arrow at bottom right side to move upward")
+    public void clickOnArrowAtBottomRightSideToMoveUpward() {
+        homePage.clickScrollUp();
+    }
+
+    @And("Verify that page is scrolled up and 'Full-Fledged practice website for Automation Engineers' text is visible on screen")
+    public void verifyThatPageIsScrolledUpAndFullFledgedPracticeWebsiteForAutomationEngineersTextIsVisibleOnScreen() {
+        JavascriptExecutor j = (JavascriptExecutor) driver;
+        long topPageScrollPosition = (Long) j.executeScript("return window.pageYOffset;");
+        assertEquals(0, topPageScrollPosition);
+        WebElement slider = driver.findElement(By.id("slider-carousel"));
+        assertTrue(slider.isDisplayed());
+        String text = slider.getText();
+        assertTrue(text.contains("Full-Fledged practice website for Automation Engineers"));
     }
 
 

@@ -57,6 +57,8 @@ public class HomePage {
     private WebElement middleRecommendedItemAddToCartButton;
     @FindBy(xpath = "//*[@id=\"cartModal\"]/div/div/div[2]/p[2]/a/u")
     private WebElement viewCartButton;
+    @FindBy(id = "scrollUp")
+    private WebElement scrollUpButton;
 
 // TODO:
 //    @FindBy(xpath = "/html/body/section[2]/div/div/div[2]/div[1]/div[9]/div/div[1]/div[2]/div/a")
@@ -168,6 +170,10 @@ public class HomePage {
 
     public void clickViewCartButton() {
         viewCartButton.click();
+    }
+
+    public void clickScrollUp() {
+        scrollUpButton.click();
     }
 }
 
